@@ -1,25 +1,28 @@
 package huli.example.huliwebshop.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="categories")
+@Table(name = "categories")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    //ONETOMANY PRODUCT
+
     @OneToMany(
-            mappedBy = "meetingRoom",
+            mappedBy = "product",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Product> product;
-    public Category(){
+    private List<Product> products = new ArrayList<>();
+
+    public Category() {
 
     }
+
     public Category(Long id, String name) {
         this.id = id;
         this.name = name;

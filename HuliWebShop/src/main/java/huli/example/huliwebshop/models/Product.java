@@ -1,5 +1,8 @@
 package huli.example.huliwebshop.models;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -13,10 +16,23 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-    //COMENT ONETOMANY
-    public Product(){
+
+    @OneToMany(
+            mappedBy = "comment",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Comment> comments = new ArrayList<>();
+    @OneToMany(
+            mappedBy = "rating",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Rating> ratings = new ArrayList<>();
+    public Product() {
 
     }
+
     public Product(Long id, String name, String description, String picture, Category category) {
         this.id = id;
         this.name = name;
@@ -63,5 +79,21 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 }
