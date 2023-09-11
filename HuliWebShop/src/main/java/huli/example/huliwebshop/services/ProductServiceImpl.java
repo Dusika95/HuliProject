@@ -1,5 +1,6 @@
 package huli.example.huliwebshop.services;
 
+import huli.example.huliwebshop.DTOs.CommentsWithCreatorsDTO;
 import huli.example.huliwebshop.DTOs.ProductGetByAloneDTO;
 import huli.example.huliwebshop.DTOs.ProductGetToListDTO;
 import huli.example.huliwebshop.models.Product;
@@ -54,9 +55,12 @@ public class ProductServiceImpl implements ProductService {
             productGetByAloneDTO.setPicture(product.getPicture());
             //IDE MÉG AZ USER IS KÉNE HOGY USER IS LÁTHATÓ LEGYENA COMMENTJE MELETT
             // SZVAL VMI COMMENTDTO LIST kéne
-            List<String> comments = new ArrayList<>();
+            List<CommentsWithCreatorsDTO> comments = new ArrayList<>();
             for (int i = 0; i < product.getComments().size(); i++) {
-                String aComment = product.getComments().get(i).getComment();
+                CommentsWithCreatorsDTO aComment = new CommentsWithCreatorsDTO();
+                aComment.setComment(product.getComments().get(i).getComment());
+                aComment.setUserId(product.getComments().get(i).getUser().getId());
+                aComment.setUserName(product.getComments().get(i).getUser().getFirstName()+" "+product.getComments().get(i).getUser().getLastName());
                 comments.add(aComment);
             }
             productGetByAloneDTO.setComment(comments);

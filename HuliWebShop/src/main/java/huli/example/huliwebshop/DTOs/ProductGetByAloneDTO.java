@@ -6,12 +6,13 @@ public class ProductGetByAloneDTO {
     private String name;
     private String picture;
     private String categoryName;
-    private List<String> comment;
+    private List<CommentsWithCreatorsDTO> comment;
     private double star;
     public ProductGetByAloneDTO(){
 
     }
-    public ProductGetByAloneDTO(String name, String picture, String categoryName, List<String> comment, double star) {
+
+    public ProductGetByAloneDTO(String name, String picture, String categoryName, List<CommentsWithCreatorsDTO> comment, double star) {
         this.name = name;
         this.picture = picture;
         this.categoryName = categoryName;
@@ -43,11 +44,11 @@ public class ProductGetByAloneDTO {
         this.categoryName = categoryName;
     }
 
-    public List<String> getComment() {
+    public List<CommentsWithCreatorsDTO> getComment() {
         return comment;
     }
 
-    public void setComment(List<String> comment) {
+    public void setComment(List<CommentsWithCreatorsDTO> comment) {
         this.comment = comment;
     }
 
