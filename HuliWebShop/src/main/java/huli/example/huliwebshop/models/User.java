@@ -1,6 +1,8 @@
 package huli.example.huliwebshop.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -19,6 +21,13 @@ public class User {
 
   @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
   private Cart cart;
+  @OneToMany(
+          mappedBy = "comment",
+          cascade = CascadeType.ALL,
+          orphanRemoval = true
+  )
+  private List<Comment> comments= new ArrayList<>();
+
   public User() {}
 
   public User(String firstName, String lastName, String email, String password, String address, String zipCode, String city) {
