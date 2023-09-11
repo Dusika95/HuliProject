@@ -1,14 +1,6 @@
-package huli.example.huliwebshop.models;
+package huli.example.huliwebshop.DTOs;
 
-import javax.persistence.*;
-
-
-@Entity
-@Table(name = "users")
-public class User {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+public class UserDTO {
   private String firstName;
   private String lastName;
   private String email;
@@ -16,28 +8,6 @@ public class User {
   private String address;
   private String zipCode;
   private String city;
-
-  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-  private Cart cart;
-  public User() {}
-
-  public User(String firstName, String lastName, String email, String password, String address, String zipCode, String city) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    this.password = password;
-    this.address = address;
-    this.zipCode = zipCode;
-    this.city = city;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
 
   public String getFirstName() {
     return firstName;
@@ -94,13 +64,4 @@ public class User {
   public void setCity(String city) {
     this.city = city;
   }
-
-  public Cart getCart() {
-    return cart;
-  }
-
-  public void setCart(Cart cart) {
-    this.cart = cart;
-  }
 }
-
