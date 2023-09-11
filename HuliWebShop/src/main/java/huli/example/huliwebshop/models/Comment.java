@@ -9,14 +9,15 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String comment;
-    private int star;
-    //ONETOMANY PRODUCT
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
     public Comment() {
     }
 
-    public Comment(String comment, int star) {
+    public Comment(String comment) {
         this.comment = comment;
-        this.star = star;
     }
 
     public Long getId() {
@@ -35,11 +36,4 @@ public class Comment {
         this.comment = comment;
     }
 
-    public int getStar() {
-        return star;
-    }
-
-    public void setStar(int star) {
-        this.star = star;
-    }
 }
