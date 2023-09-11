@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
-    private ICategoryRepository iCategoryRepoRepository;
+    private ICategoryRepository iCategoryRepository;
 
     @Autowired
     public CategoryServiceImpl(ICategoryRepository iCategoryRepository) {
-        this.iCategoryRepoRepository = iCategoryRepository;
+        this.iCategoryRepository = iCategoryRepository;
     }
 }

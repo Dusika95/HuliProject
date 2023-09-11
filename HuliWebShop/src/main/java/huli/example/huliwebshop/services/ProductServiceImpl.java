@@ -1,8 +1,13 @@
 package huli.example.huliwebshop.services;
 
+import huli.example.huliwebshop.DTOs.CommentsWithCreatorsDTO;
+import huli.example.huliwebshop.DTOs.ProductCreateDTO;
 import huli.example.huliwebshop.DTOs.ProductGetByAloneDTO;
 import huli.example.huliwebshop.DTOs.ProductGetToListDTO;
+import huli.example.huliwebshop.models.Category;
 import huli.example.huliwebshop.models.Product;
+import huli.example.huliwebshop.repository.ICartRepository;
+import huli.example.huliwebshop.repository.ICategoryRepository;
 import huli.example.huliwebshop.repository.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +19,12 @@ import java.util.Optional;
 @Service
 public class ProductServiceImpl implements ProductService {
     private IProductRepository iProductRepository;
+    private ICategoryRepository iCategoryRepository;
 
     @Autowired
-    public ProductServiceImpl(IProductRepository iProductRepository) {
+    public ProductServiceImpl(IProductRepository iProductRepository, ICategoryRepository iCategoryRepository) {
         this.iProductRepository = iProductRepository;
+        this.iCategoryRepository= iCategoryRepository;
     }
 
     @Override
@@ -54,9 +61,12 @@ public class ProductServiceImpl implements ProductService {
             productGetByAloneDTO.setPicture(product.getPicture());
             //IDE MÉG AZ USER IS KÉNE HOGY USER IS LÁTHATÓ LEGYENA COMMENTJE MELETT
             // SZVAL VMI COMMENTDTO LIST kéne
-            List<String> comments = new ArrayList<>();
+            List<CommentsWithCreatorsDTO> comments = new ArrayList<>();
             for (int i = 0; i < product.getComments().size(); i++) {
-                String aComment = product.getComments().get(i).getComment();
+                CommentsWithCreatorsDTO aComment = new CommentsWithCreatorsDTO();
+                aComment.setComment(product.getComments().get(i).getComment());
+                aComment.setUserId(product.getComments().get(i).getUser().getId());
+                aComment.setUserName(product.getComments().get(i).getUser().getFirstName()+" "+product.getComments().get(i).getUser().getLastName());
                 comments.add(aComment);
             }
             productGetByAloneDTO.setComment(comments);
@@ -69,6 +79,20 @@ public class ProductServiceImpl implements ProductService {
             productGetByAloneDTO.setStar(average);
             return productGetByAloneDTO;
         }
+    }
+    @Override
+    public Product createNewProduct(ProductCreateDTO productCreateDTO) throws Exception{
+        Product product= new Product();
+        Category category= new Category();
+        category.setName(productCreateDTO.getName());
+        //VHOGY BE KELL RAKNI AZ ID-T
+        product.setCategory(category);
+
+        product.setDescription(productCreateDTO.getDescription());
+        product.setName(productCreateDTO.getName());
+        product.setPicture(productCreateDTO.getPicture());
+        iProductRepository.save(product);
+        return product;
     }
 
 }

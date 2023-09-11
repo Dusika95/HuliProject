@@ -1,5 +1,6 @@
 package huli.example.huliwebshop.controllers;
 
+import huli.example.huliwebshop.DTOs.ProductCreateDTO;
 import huli.example.huliwebshop.models.Product;
 import huli.example.huliwebshop.services.ProductService;
 import huli.example.huliwebshop.services.ProductServiceImpl;
@@ -22,13 +23,20 @@ public class ProductController {
         }
     }
     @GetMapping("/all-product/{id}")
-    public ResponseEntity editBuilding(@PathVariable Long id){
+    public ResponseEntity getProduct(@PathVariable Long id){
         try {
             return ResponseEntity.ok().body(productService.getByAlone(id));
         } catch (Exception e) {
             return ResponseEntity.status(400).body(e.getMessage());
         }
     }
-
+    @PostMapping("/create")
+    public ResponseEntity createProduct(@RequestBody ProductCreateDTO productCreateDTO){
+        try {
+            return ResponseEntity.ok().body(productService.createNewProduct(productCreateDTO));
+        } catch(Exception e){
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
 }
 
