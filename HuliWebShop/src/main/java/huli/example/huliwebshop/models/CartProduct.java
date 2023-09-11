@@ -47,9 +47,7 @@ public class CartProduct {
     }
 
     public void setProduct(Product product) {
-        this.product = product;
-    }
-
+        this.product = product; }
 
 }
 

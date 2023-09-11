@@ -46,6 +46,12 @@ public class UserServiceImpl implements UserService {
     }
     return null;
   }
+
+  @Override
+  public boolean isEmailTaken(String email) {
+    User existingUser = iuserRepository.findByEmail(email);
+    return existingUser != null;
+  }
 }
 
 
