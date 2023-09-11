@@ -1,7 +1,12 @@
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.15'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'checkstyle'
+	id 'jacoco'
 }
 
 group = 'huli.example'
@@ -48,7 +53,7 @@ task flywayNewTemplate {
 	doLast {
 		def version = '1.0'
 		def marker = LocalDateTime.now().format(DateTimeFormatter.ofPattern('yyyyMMddHHmmss'))
-		String fileName = "V${version}.${marker}__insert_technology_field_into_meeting_rooms.sql"
+		String fileName = "V${version}.${marker}__create_products_table.sql"
 		def flywayLocation = "${sourceSets.main.resources.sourceDirectories.first().path}/db/migration"
 		new File("${flywayLocation}/${fileName}").createNewFile()
 		println "Created a new migration file: ${fileName}"
