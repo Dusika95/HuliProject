@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     User user = new User(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
-            userDTO.getPassword(), userDTO.getAddress(), userDTO.getZipCode(), userDTO.getCity());
+            userDTO.getPassword(), userDTO.getAddress(), userDTO.getZipCode(), userDTO.getCity(), "user");
     iuserRepository.save(user);
   }
 

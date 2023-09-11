@@ -18,6 +18,8 @@ public class User {
   private String address;
   private String zipCode;
   private String city;
+  private String role;
+
 
   @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
   private Cart cart;
@@ -30,7 +32,7 @@ public class User {
 
   public User() {}
 
-  public User(String firstName, String lastName, String email, String password, String address, String zipCode, String city) {
+  public User(String firstName, String lastName, String email, String password, String address, String zipCode, String city, String role) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
@@ -38,6 +40,7 @@ public class User {
     this.address = address;
     this.zipCode = zipCode;
     this.city = city;
+    this.role = "user";
   }
 
   public Long getId() {
@@ -110,6 +113,22 @@ public class User {
 
   public void setCart(Cart cart) {
     this.cart = cart;
+  }
+
+  public String getRole() {
+    return role;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
+  }
+
+  public List<Comment> getComments() {
+    return comments;
+  }
+
+  public void setComments(List<Comment> comments) {
+    this.comments = comments;
   }
 }
 
