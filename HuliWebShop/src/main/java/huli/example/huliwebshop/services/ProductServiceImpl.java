@@ -41,7 +41,14 @@ public class ProductServiceImpl implements ProductService {
                 productGetToListDTO.setName(allProducts.get(i).getName());
                 productGetToListDTO.setPicture(allProducts.get(i).getPicture());
                 productGetToListDTO.setCategoryName(allProducts.get(i).getCategory().getName());
+                productGetToListDTO.setPrice(allProducts.get(i).getPrice());
+                if(allProducts.get(i).getQuantity()>0){
+                    productGetToListDTO.setAvailable(true);
+                }else{
+                    productGetToListDTO.setAvailable(false);
+                }
                 productGetToListDTOS.add(productGetToListDTO);
+
             }
             return productGetToListDTOS;
         }
@@ -59,8 +66,9 @@ public class ProductServiceImpl implements ProductService {
             productGetByAloneDTO.setName(product.getName());
             productGetByAloneDTO.setCategoryName(product.getCategory().getName());
             productGetByAloneDTO.setPicture(product.getPicture());
-            //IDE MÉG AZ USER IS KÉNE HOGY USER IS LÁTHATÓ LEGYENA COMMENTJE MELETT
-            // SZVAL VMI COMMENTDTO LIST kéne
+            productGetByAloneDTO.setPrice(product.getPrice());
+            productGetByAloneDTO.setQuantity(product.getQuantity());
+
             List<CommentsWithCreatorsDTO> comments = new ArrayList<>();
             for (int i = 0; i < product.getComments().size(); i++) {
                 CommentsWithCreatorsDTO aComment = new CommentsWithCreatorsDTO();
@@ -83,11 +91,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product createNewProduct(ProductCreateDTO productCreateDTO) throws Exception{
         Product product= new Product();
-        Category category= new Category();
-        category.setName(productCreateDTO.getName());
-        //VHOGY BE KELL RAKNI AZ ID-T
+        Category category= iCategoryRepository.findByName(productCreateDTO.getName());
         product.setCategory(category);
 
+        product.setPrice(productCreateDTO.getPrice());
+        product.setQuantity(productCreateDTO.getQuantity());
         product.setDescription(productCreateDTO.getDescription());
         product.setName(productCreateDTO.getName());
         product.setPicture(productCreateDTO.getPicture());

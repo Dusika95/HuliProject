@@ -15,6 +15,8 @@ public class Product {
     private String name;
     private String description;
     private String picture;
+    private int price;
+    private int quantity;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -39,12 +41,17 @@ public class Product {
 
     }
 
-    public Product(Long id, String name, String description, String picture, Category category) {
+    public Product(Long id, String name, String description, String picture, int price, int quantity, Category category, List<Comment> comments, List<Rating> ratings, Set<CartProduct> cartProducts) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.picture = picture;
+        this.price = price;
+        this.quantity = quantity;
         this.category = category;
+        this.comments = comments;
+        this.ratings = ratings;
+        this.cartProducts = cartProducts;
     }
 
     public Long getId() {
@@ -101,5 +108,29 @@ public class Product {
 
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Set<CartProduct> getCartProducts() {
+        return cartProducts;
+    }
+
+    public void setCartProducts(Set<CartProduct> cartProducts) {
+        this.cartProducts = cartProducts;
     }
 }

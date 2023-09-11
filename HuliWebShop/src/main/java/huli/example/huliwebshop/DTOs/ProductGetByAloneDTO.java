@@ -8,16 +8,20 @@ public class ProductGetByAloneDTO {
     private String categoryName;
     private List<CommentsWithCreatorsDTO> comment;
     private double star;
+    private int price;
+    private int quantity;
     public ProductGetByAloneDTO(){
 
     }
 
-    public ProductGetByAloneDTO(String name, String picture, String categoryName, List<CommentsWithCreatorsDTO> comment, double star) {
+    public ProductGetByAloneDTO(String name, String picture, String categoryName, List<CommentsWithCreatorsDTO> comment, double star, int price, int quantity) {
         this.name = name;
         this.picture = picture;
         this.categoryName = categoryName;
         this.comment = comment;
         this.star = star;
+        this.price = price;
+        this.quantity = quantity;
     }
 
     public String getName() {
@@ -58,5 +62,21 @@ public class ProductGetByAloneDTO {
 
     public void setStar(double star) {
         this.star = star;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
