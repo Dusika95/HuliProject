@@ -15,11 +15,17 @@ public class Cart {
   @JoinColumn(name = "user_id")
   private User user;
 
-  @ManyToMany
-  @JoinTable(name = "cart_products",
-          joinColumns = @JoinColumn(name = "cart_id"),
-          inverseJoinColumns = @JoinColumn(name = "product_id"))
-  private Set<Product> products = new HashSet<>();
+  @OneToMany(mappedBy = "cart")
+  private Set<CartProduct> cartProducts = new HashSet<>();
+
+  public Cart() {
+  }
+
+  public Cart(Long id, User user, Set<CartProduct> cartProducts) {
+    this.id = id;
+    this.user = user;
+    this.cartProducts = cartProducts;
+  }
 
   public Long getId() {
     return id;
@@ -37,12 +43,12 @@ public class Cart {
     this.user = user;
   }
 
-  public Set<Product> getProducts() {
-    return products;
+  public Set<CartProduct> getCartProducts() {
+    return cartProducts;
   }
 
-  public void setProducts(Set<Product> products) {
-    this.products = products;
+  public void setCartProducts(Set<CartProduct> cartProducts) {
+    this.cartProducts = cartProducts;
   }
 }
 

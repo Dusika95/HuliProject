@@ -2,6 +2,7 @@ package huli.example.huliwebshop.services;
 
 import huli.example.huliwebshop.DTOs.CartDTO;
 import huli.example.huliwebshop.models.Cart;
+import huli.example.huliwebshop.models.CartProduct;
 import huli.example.huliwebshop.models.Product;
 import huli.example.huliwebshop.models.User;
 import huli.example.huliwebshop.repository.ICartRepository;
@@ -9,6 +10,7 @@ import huli.example.huliwebshop.repository.IUserRepository;
 import huli.example.huliwebshop.repository.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -16,20 +18,22 @@ import java.util.Set;
 
 @Service
 public class CartServiceImpl implements CartService {
-  private final ICartRepository icartRepository;
-  private final IUserRepository iuserRepository;
-  private final IProductRepository iProductRepository;
+
+  private final ICartRepository cartRepository;
+  private final IUserRepository userRepository;
+  private final IProductRepository productRepository;
 
   @Autowired
-  public CartServiceImpl(ICartRepository icartRepository, IUserRepository iuserRepository, IProductRepository iProductRepository) {
-    this.icartRepository = icartRepository;
-    this.iuserRepository = iuserRepository;
-    this.iProductRepository = iProductRepository;
+  public CartServiceImpl(ICartRepository cartRepository, IUserRepository userRepository, IProductRepository productRepository) {
+    this.cartRepository = cartRepository;
+    this.userRepository = userRepository;
+    this.productRepository = productRepository;
   }
 
   @Override
+  @Transactional
   public void addToCart(Long userId, CartDTO cartDTO) {
-    Optional<User> userOptional = iuserRepository.findById(userId);
+    Optional<User> userOptional = userRepository.findById(userId);
     if (!userOptional.isPresent()) {
       throw new RuntimeException("User not found with ID: " + userId);
     }
@@ -41,24 +45,25 @@ public class CartServiceImpl implements CartService {
       cart.setUser(user);
     }
 
-    cart.getProducts().clear();
-
-    Set<Product> productsToAdd = new HashSet<>();
+    Set<CartProduct> cartProducts = new HashSet<>();
     for (Long productId : cartDTO.getProductIds()) {
-      Optional<Product> productOptional = iProductRepository.findById(productId);
+      Optional<Product> productOptional = productRepository.findById(productId);
       if (productOptional.isPresent()) {
-        productsToAdd.add(productOptional.get());
+        CartProduct cartProduct = new CartProduct();
+        cartProduct.setCart(cart);
+        cartProduct.setProduct(productOptional.get());
+        cartProducts.add(cartProduct);
       }
     }
 
-    cart.setProducts(productsToAdd);
+    cart.setCartProducts(cartProducts);
 
-    icartRepository.save(cart);
+    cartRepository.save(cart);
   }
 
   @Override
   public Cart viewCart(Long userId) {
-    Optional<User> userOptional = iuserRepository.findById(userId);
+    Optional<User> userOptional = userRepository.findById(userId);
     if (!userOptional.isPresent()) {
       throw new RuntimeException("User not found with ID: " + userId);
     }
@@ -73,8 +78,9 @@ public class CartServiceImpl implements CartService {
   }
 
   @Override
+  @Transactional
   public void clearCart(Long userId) {
-    Optional<User> userOptional = iuserRepository.findById(userId);
+    Optional<User> userOptional = userRepository.findById(userId);
     if (!userOptional.isPresent()) {
       throw new RuntimeException("User not found with ID: " + userId);
     }
@@ -85,10 +91,8 @@ public class CartServiceImpl implements CartService {
       throw new RuntimeException("Cart not found for the user with ID: " + userId);
     }
 
-    cart.getProducts().clear();
+    cart.getCartProducts().clear();
 
-    icartRepository.save(cart);
+    cartRepository.save(cart);
   }
-
 }
-
