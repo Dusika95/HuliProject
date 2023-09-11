@@ -2,7 +2,9 @@ package huli.example.huliwebshop.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -29,6 +31,10 @@ public class Product {
             orphanRemoval = true
     )
     private List<Rating> ratings = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product")
+    private Set<CartProduct> cartProducts = new HashSet<>();
+
     public Product() {
 
     }
