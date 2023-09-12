@@ -51,7 +51,7 @@ task flywayNewTemplate {
 	doLast {
 		def version = '1.0'
 		def marker = LocalDateTime.now().format(DateTimeFormatter.ofPattern('yyyyMMddHHmmss'))
-		String fileName = "V${version}.${marker}__create_categories_table.sql"
+		String fileName = "V${version}.${marker}__create_products_table.sql"
 		def flywayLocation = "${sourceSets.main.resources.sourceDirectories.first().path}/db/migration"
 		new File("${flywayLocation}/${fileName}").createNewFile()
 		println "Created a new migration file: ${fileName}"
