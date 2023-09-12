@@ -1,10 +1,10 @@
 CREATE TABLE products (
-                          id SERIAL PRIMARY KEY,
+                          id INT PRIMARY KEY,
                           name VARCHAR(255),
                           description VARCHAR(255),
                           picture VARCHAR(255) NOT NULL,
-                          price BIGINT NOT NULL,
-                          quantity BIGINT,
-                          category_id BIGINT NOT NULL,
+                          price INT NOT NULL,
+                          quantity INT,
+                          category_id INT,
                           FOREIGN KEY (category_id) REFERENCES categories(id)
 );
