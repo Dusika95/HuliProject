@@ -1,4 +1,4 @@
-package huli.example.huliwebshop.security.jwt;
+/*package huli.example.huliwebshop.security.jwt;
 
 import huli.example.huliwebshop.security.jwt.JwtUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -75,3 +75,4 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
     }
 }
+*/

@@ -1,4 +1,4 @@
-package huli.example.huliwebshop.security.config;
+/*package huli.example.huliwebshop.security.config;
 
 
 import huli.example.huliwebshop.security.jwt.JwtAuthenticationFilter;
@@ -46,3 +46,4 @@ public class SecurityConfig {
         return http.build();
     }
 }
+*/

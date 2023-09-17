@@ -1,4 +1,4 @@
-package huli.example.huliwebshop.security.jwt;
+/*package huli.example.huliwebshop.security.jwt;
 
 
 import huli.example.huliwebshop.models.User;
@@ -95,6 +95,6 @@ public class JwtUtil {
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256) // sign with the key which is returned by getSignInKey() method
                 .compact();
     }
-}
+}*/
 
 

@@ -14,17 +14,21 @@ public class Cart {
   @OneToOne
   @JoinColumn(name = "user_id")
   private User user;
+  private String asdasd;
 
-  @OneToMany(mappedBy = "cart")
-  private Set<CartProduct> cartProducts = new HashSet<>();
+ /* @OneToMany(mappedBy = "cart")
+  private Set<CartProduct> cartProducts = new HashSet<>();*/
+  /*
+  * @OneToMany(mappedBy = "cart")
+private Set<CartProduct> cartProducts = new HashSet<>();*/
 
   public Cart() {
   }
 
-  public Cart(Long id, User user, Set<CartProduct> cartProducts) {
+  public Cart(Long id, User user/*, Set<CartProduct> cartProducts*/) {
     this.id = id;
     this.user = user;
-    this.cartProducts = cartProducts;
+    //this.cartProducts = cartProducts;
   }
 
   public Long getId() {
@@ -43,12 +47,12 @@ public class Cart {
     this.user = user;
   }
 
-  public Set<CartProduct> getCartProducts() {
+  /*public Set<CartProduct> getCartProducts() {
     return cartProducts;
   }
 
   public void setCartProducts(Set<CartProduct> cartProducts) {
     this.cartProducts = cartProducts;
-  }
+  }*/
 }
 

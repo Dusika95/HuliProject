@@ -24,7 +24,7 @@ public class User {
   @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
   private Cart cart;
   @OneToMany(
-          mappedBy = "comment",
+          mappedBy = "user",
           cascade = CascadeType.ALL,
           orphanRemoval = true
   )

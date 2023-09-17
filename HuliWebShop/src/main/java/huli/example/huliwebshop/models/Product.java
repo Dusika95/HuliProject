@@ -17,37 +17,35 @@ public class Product {
     private String picture;
     private int price;
     private int quantity;
-    /*@ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;*/
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-
     @OneToMany(
-            mappedBy = "comment",
+            mappedBy = "product",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     private List<Comment> comments = new ArrayList<>();
     @OneToMany(
-            mappedBy = "rating",
+            mappedBy = "product",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     private List<Rating> ratings = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product")
-    private Set<CartProduct> cartProducts = new HashSet<>();
+   /* @OneToMany(mappedBy = "product")
+    private Set<CartProduct> cartProducts = new HashSet<>();*/
 
-    @ManyToMany(mappedBy = "products")
-    private Set<Order> orders = new HashSet<>();
+    /*@ManyToMany(mappedBy = "product")
+    private Set<Order> orders = new HashSet<>();*/
+    /*@OneToMany(mappedBy = "product")
+    private Set<OrderProduct> orderProducts = new HashSet<>();*/
 
     public Product() {
 
     }
 
-    public Product(Long id, String name, String description, String picture, int price, int quantity, Category category, List<Comment> comments, List<Rating> ratings, Set<CartProduct> cartProducts) {
+    public Product(Long id, String name, String description, String picture, int price, int quantity, Category category, List<Comment> comments, List<Rating> ratings/*, Set<CartProduct> cartProducts*/) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -57,7 +55,7 @@ public class Product {
         this.category = category;
         this.comments = comments;
         this.ratings = ratings;
-        this.cartProducts = cartProducts;
+        //this.cartProducts = cartProducts;
     }
 
     public Long getId() {
@@ -132,11 +130,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Set<CartProduct> getCartProducts() {
+   /* public Set<CartProduct> getCartProducts() {
         return cartProducts;
     }
 
     public void setCartProducts(Set<CartProduct> cartProducts) {
         this.cartProducts = cartProducts;
-    }
+    }*/
 }

@@ -1,10 +1,17 @@
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.flywaydb:flyway-mysql:9.19.4")
+	}
+}
 
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.15'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'org.flywaydb.flyway' version '9.19.4'
 }
 
 group = 'huli.example'
@@ -23,7 +30,7 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.flywaydb:flyway-core:9.19.4'
-	implementation"org.flywaydb:flyway-mysql:8.2.1"
+	implementation 'org.flywaydb:flyway-mysql:9.19.4'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation'org.springframework.boot:spring-boot-starter-validation'
 	runtimeOnly 'com.mysql:mysql-connector-j'
@@ -46,14 +53,8 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-task flywayNewTemplate {
-	description 'Creates new sql migration template.'
-	doLast {
-		def version = '1.0'
-		def marker = LocalDateTime.now().format(DateTimeFormatter.ofPattern('yyyyMMddHHmmss'))
-		String fileName = "V${version}.${marker}__create_ratings_table.sql"
-		def flywayLocation = "${sourceSets.main.resources.sourceDirectories.first().path}/db/migration"
-		new File("${flywayLocation}/${fileName}").createNewFile()
-		println "Created a new migration file: ${fileName}"
-	}
+flyway {
+	url = 'jdbc:mysql://localhost:3306/huliwebshop'
+	user = 'root'
+	password = 'password'
 }

@@ -1,4 +1,4 @@
-package huli.example.huliwebshop.controllers;
+/*package huli.example.huliwebshop.controllers;
 
 import huli.example.huliwebshop.DTOs.CartDTO;
 import huli.example.huliwebshop.models.Cart;
@@ -30,4 +30,4 @@ public class CartController {
   public void clearCart(@PathVariable Long userId) {
     cartService.clearCart(userId);
   }
-}
+}*/

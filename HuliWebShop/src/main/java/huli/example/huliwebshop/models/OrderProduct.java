@@ -3,26 +3,26 @@
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cart_products")
-public class CartProduct {
+@Table(name = "order_products")
+public class OrderProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
-    public CartProduct() {
+    public OrderProduct() {
     }
 
-    public CartProduct(Long id, Cart cart, Product product) {
+    public OrderProduct(Long id, Order order, Product product) {
         this.id = id;
-        this.cart = cart;
+        this.order = order;
         this.product = product;
     }
 
@@ -34,12 +34,12 @@ public class CartProduct {
         this.id = id;
     }
 
-    public Cart getCart() {
-        return cart;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Product getProduct() {
@@ -47,7 +47,7 @@ public class CartProduct {
     }
 
     public void setProduct(Product product) {
-        this.product = product; }
-
-}*/
-
+        this.product = product;
+    }
+}
+*/

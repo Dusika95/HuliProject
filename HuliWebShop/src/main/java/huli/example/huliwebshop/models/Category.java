@@ -11,14 +11,12 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    /*@OneToMany(
-            mappedBy = "product",
+    @OneToMany(
+            mappedBy = "category",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Product> products = new ArrayList<>();*/
-    @OneToMany(mappedBy = "category")
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
     public Category() {
     }
 
