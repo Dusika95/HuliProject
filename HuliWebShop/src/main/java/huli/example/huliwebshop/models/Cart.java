@@ -15,8 +15,6 @@ public class Cart {
   @JoinColumn(name = "user_id")
   private User user;
 
-  private String asdasd;
-
  /* @OneToMany(mappedBy = "cart")
   private Set<CartProduct> cartProducts = new HashSet<>();*/
   /*
