@@ -1,0 +1,2 @@
+ALTER TABLE carts
+    ADD asdasd VARCHAR(255) NULL;

@@ -1,4 +1,4 @@
-/*package huli.example.huliwebshop.security.config;
+package huli.example.huliwebshop.security.config;
 
 
 import huli.example.huliwebshop.repository.IUserRepository;
@@ -50,4 +50,3 @@ public class ApplicationConfig {
         return new BCryptPasswordEncoder();
     }
 }
-*/

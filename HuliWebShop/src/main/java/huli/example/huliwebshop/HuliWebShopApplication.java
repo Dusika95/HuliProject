@@ -45,8 +45,4 @@ public class HuliWebShopApplication implements CommandLineRunner {
 		}
 	}
 
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 }
