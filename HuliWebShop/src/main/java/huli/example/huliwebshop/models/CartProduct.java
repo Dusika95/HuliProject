@@ -1,4 +1,4 @@
-/*package huli.example.huliwebshop.models;
+package huli.example.huliwebshop.models;
 
 import javax.persistence.*;
 
@@ -49,5 +49,5 @@ public class CartProduct {
     public void setProduct(Product product) {
         this.product = product; }
 
-}*/
+}
 

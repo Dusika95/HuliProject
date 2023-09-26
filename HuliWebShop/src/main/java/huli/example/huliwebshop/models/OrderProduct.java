@@ -1,4 +1,4 @@
-/*package huli.example.huliwebshop.models;
+package huli.example.huliwebshop.models;
 
 import javax.persistence.*;
 
@@ -50,4 +50,3 @@ public class OrderProduct {
         this.product = product;
     }
 }
-*/

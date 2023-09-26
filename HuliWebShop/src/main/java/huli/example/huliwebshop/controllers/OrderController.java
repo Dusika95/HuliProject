@@ -16,7 +16,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @PostMapping("/create")
+    @PostMapping("api/create")
     public ResponseEntity<String> createOrder(@RequestBody OrderDTO orderDTO) {
         Long orderId = orderService.createOrder(orderDTO);
 

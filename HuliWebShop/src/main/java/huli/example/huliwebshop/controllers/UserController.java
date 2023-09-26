@@ -15,13 +15,13 @@ public class UserController {
     this.userService = userService;
   }
 
-  @PostMapping("/register")
+  /*@PostMapping("/register")
   public void registerUser(@RequestBody UserDTO userDTO) {
     userService.registerUser(userDTO);
-  }
+  }*/
 
-  @PostMapping("/login")
+  /*@PostMapping("api/login")
   public void loginUser(@RequestBody UserDTO userDTO) {
     userService.loginUser(userDTO);
-  }
+  }*/
 }

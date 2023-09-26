@@ -15,6 +15,8 @@ public class HuliWebShopApplication implements CommandLineRunner {
 
 	@Autowired
 	private UserService userService;
+	/*@Autowired
+	private BCryptPasswordEncoder passwordEncoder;*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(HuliWebShopApplication.class, args);
@@ -24,13 +26,11 @@ public class HuliWebShopApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		String email = "admin@example.com";
 		if (!userService.isEmailTaken(email)) {
-			String firstName = "Admin";
-			String lastName = "User";
+			String name = "AdminUser";
 			String password = "adminpassword";
 
 			UserDTO userDTO = new UserDTO();
-			userDTO.setFirstName(firstName);
-			userDTO.setLastName(lastName);
+			userDTO.setName(name);
 			userDTO.setEmail(email);
 			userDTO.setPassword(password);
 			userDTO.setAddress("Admin Address");

@@ -17,13 +17,8 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    /* @ManyToMany
-     @JoinTable(name = "order_products",
-             joinColumns = @JoinColumn(name = "order_id"),
-             inverseJoinColumns = @JoinColumn(name = "product_id"))
-     private Set<Product> products = new HashSet<>();*/
- /*   @OneToMany(mappedBy = "order")
-    private Set<OrderProduct> orderProducts = new HashSet<>();*/
+   @OneToMany(mappedBy = "order")
+    private Set<OrderProduct> orderProducts = new HashSet<>();
 
     private BigDecimal totalPrice;
     private LocalDateTime orderDate;
@@ -34,11 +29,11 @@ public class Order {
 
     public Order() {
     }
-//kostruktor átírva
-    public Order(Long id, User user, /*Set<OrderProduct> orderProducts, */BigDecimal totalPrice, LocalDateTime orderDate, String shippingAddress, String paymentMethod, String orderStatus) {
+
+    public Order(Long id, User user, Set<OrderProduct> orderProducts, BigDecimal totalPrice, LocalDateTime orderDate, String shippingAddress, String paymentMethod, String orderStatus) {
         this.id = id;
         this.user = user;
-        //this.orderProducts = orderProducts;
+        this.orderProducts = orderProducts;
         this.totalPrice = totalPrice;
         this.orderDate = orderDate;
         this.shippingAddress = shippingAddress;
@@ -62,21 +57,13 @@ public class Order {
         this.user = user;
     }
 
-    /*public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }*/
-
-    /*public Set<OrderProduct> getOrderProducts() {
+    public Set<OrderProduct> getOrderProducts() {
         return orderProducts;
     }
 
     public void setOrderProducts(Set<OrderProduct> orderProducts) {
         this.orderProducts = orderProducts;
-    }*/
+    }
 
     public BigDecimal getTotalPrice() {
         return totalPrice;

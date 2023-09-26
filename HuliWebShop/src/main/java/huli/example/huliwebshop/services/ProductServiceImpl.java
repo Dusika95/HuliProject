@@ -74,7 +74,7 @@ public class ProductServiceImpl implements ProductService {
                 CommentsWithCreatorsDTO aComment = new CommentsWithCreatorsDTO();
                 aComment.setComment(product.getComments().get(i).getComment());
                 aComment.setUserId(product.getComments().get(i).getUser().getId());
-                aComment.setUserName(product.getComments().get(i).getUser().getFirstName()+" "+product.getComments().get(i).getUser().getLastName());
+                aComment.setUserName(product.getComments().get(i).getUser().getName());
                 comments.add(aComment);
             }
             productGetByAloneDTO.setComment(comments);
