@@ -4,6 +4,7 @@ import java.util.List;
 
 public class ProductGetByAloneDTO {
     private String name;
+    private String description;
     private String picture;
     private String categoryName;
     private List<CommentsWithCreatorsDTO> comment;
@@ -14,8 +15,9 @@ public class ProductGetByAloneDTO {
 
     }
 
-    public ProductGetByAloneDTO(String name, String picture, String categoryName, List<CommentsWithCreatorsDTO> comment, double star, int price, int quantity) {
+    public ProductGetByAloneDTO(String name, String description, String picture, String categoryName, List<CommentsWithCreatorsDTO> comment, double star, int price, int quantity) {
         this.name = name;
+        this.description = description;
         this.picture = picture;
         this.categoryName = categoryName;
         this.comment = comment;
@@ -78,5 +80,13 @@ public class ProductGetByAloneDTO {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

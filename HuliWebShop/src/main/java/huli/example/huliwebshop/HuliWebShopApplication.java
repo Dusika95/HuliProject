@@ -1,13 +1,12 @@
 package huli.example.huliwebshop;
 
-import huli.example.huliwebshop.DTOs.UserDTO;
-import huli.example.huliwebshop.models.User;
+import huli.example.huliwebshop.DTOs.UserRegisterDTO;
 import huli.example.huliwebshop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
@@ -15,8 +14,8 @@ public class HuliWebShopApplication implements CommandLineRunner {
 
 	@Autowired
 	private UserService userService;
-	/*@Autowired
-	private BCryptPasswordEncoder passwordEncoder;*/
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	public static void main(String[] args) {
 		SpringApplication.run(HuliWebShopApplication.class, args);
@@ -29,15 +28,15 @@ public class HuliWebShopApplication implements CommandLineRunner {
 			String name = "AdminUser";
 			String password = "adminpassword";
 
-			UserDTO userDTO = new UserDTO();
-			userDTO.setName(name);
-			userDTO.setEmail(email);
-			userDTO.setPassword(password);
-			userDTO.setAddress("Admin Address");
-			userDTO.setZipCode("12345");
-			userDTO.setCity("Admin City");
+			UserRegisterDTO userRegisterDTO = new UserRegisterDTO();
+			userRegisterDTO.setName(name);
+			userRegisterDTO.setEmail(email);
+			userRegisterDTO.setPassword(password);
+			userRegisterDTO.setAddress("Admin Address");
+			userRegisterDTO.setZipCode("12345");
+			userRegisterDTO.setCity("Admin City");
 
-			userService.registerUser(userDTO);
+			userService.registerUser(userRegisterDTO);
 
 			System.out.println("Admin user created.");
 		} else {

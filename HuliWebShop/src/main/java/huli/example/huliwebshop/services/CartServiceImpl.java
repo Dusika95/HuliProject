@@ -1,4 +1,4 @@
-/*package huli.example.huliwebshop.services;
+package huli.example.huliwebshop.services;
 
 import huli.example.huliwebshop.DTOs.CartDTO;
 import huli.example.huliwebshop.models.Cart;
@@ -95,4 +95,4 @@ public class CartServiceImpl implements CartService {
 
     cartRepository.save(cart);
   }
-}*/
+}

@@ -3,17 +3,15 @@ package huli.example.huliwebshop.DTOs;
 public class UserDTO {
   private String name;
   private String email;
-  private String password;
   private String address;
   private String zipCode;
   private String city;
 
   public UserDTO(){
   }
-  public UserDTO(String name, String email, String password, String address, String zipCode, String city) {
+  public UserDTO(String name, String email, String address, String zipCode, String city) {
     this.name = name;
     this.email = email;
-    this.password = password;
     this.address = address;
     this.zipCode = zipCode;
     this.city = city;
@@ -33,14 +31,6 @@ public class UserDTO {
 
   public void setEmail(String email) {
     this.email = email;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
   }
 
   public String getAddress() {
