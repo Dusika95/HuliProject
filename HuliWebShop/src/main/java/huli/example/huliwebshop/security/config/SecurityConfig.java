@@ -33,6 +33,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST,"/api/**") // here we can pass a list of strings - this will represent our application's patterns
                 .permitAll() // permit all the requests from the matchers list (whitelist)
                 //.antMatchers("/admin/buildings/**").hasAuthority("admin")
+                .antMatchers("/api/users/admin/**").hasAuthority("admin")
                 .anyRequest() // any other request must be authenticated
                 .authenticated()
                 .and()

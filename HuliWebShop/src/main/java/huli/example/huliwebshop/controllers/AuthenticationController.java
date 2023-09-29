@@ -44,19 +44,11 @@ public class AuthenticationController {
             return ResponseEntity.badRequest().body(errorMessages);
         }
 
-        String name = userRegisterDTO.getName();
-        String email = userRegisterDTO.getEmail();
-        String password = userRegisterDTO.getPassword();
-        String address = userRegisterDTO.getAddress();
-        String zipCode = userRegisterDTO.getZipCode();
-        String city = userRegisterDTO.getCity();
-
-
-        if (userService.isEmailTaken(email)) {
+        if (userService.isEmailTaken(userRegisterDTO.getEmail())) {
             return ResponseEntity.badRequest().body("Email is already taken.");
         }
-        UserDTO userDTO=new UserDTO(name, email, password,address, zipCode,city);
-        User registeredUser = userService.registerUser(userDTO);
+
+        User registeredUser = userService.registerUser(userRegisterDTO);
 
         UserReturnDTO returnDTO = new UserReturnDTO(registeredUser.getId(), registeredUser.getEmail(), registeredUser.getRole());
 

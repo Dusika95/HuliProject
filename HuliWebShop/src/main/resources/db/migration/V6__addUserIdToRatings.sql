@@ -1,0 +1,5 @@
+ALTER TABLE ratings
+    ADD user_id BIGINT NULL;
+
+ALTER TABLE ratings
+    ADD CONSTRAINT FK_RATINGS_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);

@@ -1,4 +1,4 @@
-/*package huli.example.huliwebshop.controllers;
+package huli.example.huliwebshop.controllers;
 
 import huli.example.huliwebshop.DTOs.CartDTO;
 import huli.example.huliwebshop.models.Cart;
@@ -6,6 +6,7 @@ import huli.example.huliwebshop.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/carts")
 public class CartController {
@@ -30,4 +31,4 @@ public class CartController {
   public void clearCart(@PathVariable Long userId) {
     cartService.clearCart(userId);
   }
-}*/
+}

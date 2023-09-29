@@ -2,6 +2,7 @@ package huli.example.huliwebshop.services;
 
 import huli.example.huliwebshop.DTOs.OrderDTO;
 import huli.example.huliwebshop.models.Order;
+import huli.example.huliwebshop.models.OrderProduct;
 import huli.example.huliwebshop.models.Product;
 import huli.example.huliwebshop.models.User;
 import huli.example.huliwebshop.repository.IOrderRepository;
@@ -32,13 +33,13 @@ public class OrderServiceImpl implements OrderService {
             throw new IllegalArgumentException("User not found with ID: " + orderDTO.getUserId());
         }
 
-        Set<Product> products = new HashSet<>();
-        for (Long productId : orderDTO.getProductIds()) {
+        Set<OrderProduct> products = new HashSet<>();
+        /*for (Long productId : orderDTO.getProductIds()) {
             Product product = iProductRepository.findById(productId).orElse(null);
             if (product != null) {
                 products.add(product);
             }
-        }
+        }*/
 
         if (products.isEmpty()) {
             throw new IllegalArgumentException("No valid products found in the order");
@@ -46,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
 
         Order order = new Order();
         order.setUser(user);
-        //order.setProducts(products);
+        order.setOrderProducts(products);
         order.setTotalPrice(orderDTO.getTotalPrice());
         order.setShippingAddress(orderDTO.getShippingAddress());
         order.setPaymentMethod(orderDTO.getPaymentMethod());
