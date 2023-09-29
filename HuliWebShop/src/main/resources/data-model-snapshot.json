@@ -1,6 +1,6 @@
 {
   "snapshot": {
-    "created": "2023-09-25T16:46:07.471",
+    "created": "2023-09-28T14:54:39.148",
     "database": {
       "productVersion": "2023.1.2",
       "shortName": "intellijPsiClass",
@@ -8,7 +8,7 @@
       "minorVersion": "0",
       "user": "Kricskovics Máté",
       "productName": "JPA Buddy Intellij",
-      "url": "jpab?generationContext=97fca4e7-a754-4214-a50a-c9f315eca1b7"
+      "url": "jpab?generationContext=1c85c7f5-4145-46fb-b0eb-f49a5c29b8cc"
     },
     "metadata": {
       "generationContext": {
@@ -21,7 +21,7 @@
           "catalog": {
             "default": true,
             "name": "JPA_BUDDY",
-            "snapshotId": "21a9178"
+            "snapshotId": "4e93180"
           }
         }
       ]
@@ -32,8 +32,8 @@
             "certainDataType": false,
             "name": "address",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9192",
-            "snapshotId": "21a9197",
+            "relation": "liquibase.structure.core.Table#4e93194",
+            "snapshotId": "4e93199",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -45,8 +45,8 @@
             "certainDataType": false,
             "name": "cart_id",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9180",
-            "snapshotId": "21a9183",
+            "relation": "liquibase.structure.core.Table#4e93182",
+            "snapshotId": "4e93185",
             "type": {
               "typeName": "BIGINT"
             }
@@ -57,8 +57,8 @@
             "certainDataType": false,
             "name": "category_id",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9205",
-            "snapshotId": "21a9212",
+            "relation": "liquibase.structure.core.Table#4e93207",
+            "snapshotId": "4e93214",
             "type": {
               "typeName": "BIGINT"
             }
@@ -69,8 +69,8 @@
             "certainDataType": false,
             "name": "city",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9192",
-            "snapshotId": "21a9199",
+            "relation": "liquibase.structure.core.Table#4e93194",
+            "snapshotId": "4e93201",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -82,8 +82,8 @@
             "certainDataType": false,
             "name": "comment",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9232",
-            "snapshotId": "21a9235",
+            "relation": "liquibase.structure.core.Table#4e93234",
+            "snapshotId": "4e93237",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -95,8 +95,8 @@
             "certainDataType": false,
             "name": "description",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9205",
-            "snapshotId": "21a9208",
+            "relation": "liquibase.structure.core.Table#4e93207",
+            "snapshotId": "4e93210",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -108,8 +108,8 @@
             "certainDataType": false,
             "name": "email",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9192",
-            "snapshotId": "21a9195",
+            "relation": "liquibase.structure.core.Table#4e93194",
+            "snapshotId": "4e93197",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -125,8 +125,8 @@
             "certainDataType": false,
             "name": "id",
             "nullable": false,
-            "relation": "liquibase.structure.core.Table#21a9180",
-            "snapshotId": "21a9182",
+            "relation": "liquibase.structure.core.Table#4e93182",
+            "snapshotId": "4e93184",
             "type": {
               "typeName": "BIGINT"
             }
@@ -141,8 +141,8 @@
             "certainDataType": false,
             "name": "id",
             "nullable": false,
-            "relation": "liquibase.structure.core.Table#21a9187",
-            "snapshotId": "21a9186",
+            "relation": "liquibase.structure.core.Table#4e93189",
+            "snapshotId": "4e93188",
             "type": {
               "typeName": "BIGINT"
             }
@@ -157,8 +157,8 @@
             "certainDataType": false,
             "name": "id",
             "nullable": false,
-            "relation": "liquibase.structure.core.Table#21a9215",
-            "snapshotId": "21a9214",
+            "relation": "liquibase.structure.core.Table#4e93217",
+            "snapshotId": "4e93216",
             "type": {
               "typeName": "BIGINT"
             }
@@ -173,8 +173,8 @@
             "certainDataType": false,
             "name": "id",
             "nullable": false,
-            "relation": "liquibase.structure.core.Table#21a9232",
-            "snapshotId": "21a9234",
+            "relation": "liquibase.structure.core.Table#4e93234",
+            "snapshotId": "4e93236",
             "type": {
               "typeName": "BIGINT"
             }
@@ -189,8 +189,8 @@
             "certainDataType": false,
             "name": "id",
             "nullable": false,
-            "relation": "liquibase.structure.core.Table#21a9248",
-            "snapshotId": "21a9250",
+            "relation": "liquibase.structure.core.Table#4e93252",
+            "snapshotId": "4e93254",
             "type": {
               "typeName": "BIGINT"
             }
@@ -205,8 +205,8 @@
             "certainDataType": false,
             "name": "id",
             "nullable": false,
-            "relation": "liquibase.structure.core.Table#21a9221",
-            "snapshotId": "21a9223",
+            "relation": "liquibase.structure.core.Table#4e93223",
+            "snapshotId": "4e93225",
             "type": {
               "typeName": "BIGINT"
             }
@@ -221,8 +221,8 @@
             "certainDataType": false,
             "name": "id",
             "nullable": false,
-            "relation": "liquibase.structure.core.Table#21a9205",
-            "snapshotId": "21a9204",
+            "relation": "liquibase.structure.core.Table#4e93207",
+            "snapshotId": "4e93206",
             "type": {
               "typeName": "BIGINT"
             }
@@ -237,8 +237,8 @@
             "certainDataType": false,
             "name": "id",
             "nullable": false,
-            "relation": "liquibase.structure.core.Table#21a9241",
-            "snapshotId": "21a9243",
+            "relation": "liquibase.structure.core.Table#4e93243",
+            "snapshotId": "4e93245",
             "type": {
               "typeName": "BIGINT"
             }
@@ -253,8 +253,8 @@
             "certainDataType": false,
             "name": "id",
             "nullable": false,
-            "relation": "liquibase.structure.core.Table#21a9192",
-            "snapshotId": "21a9191",
+            "relation": "liquibase.structure.core.Table#4e93194",
+            "snapshotId": "4e93193",
             "type": {
               "typeName": "BIGINT"
             }
@@ -265,8 +265,8 @@
             "certainDataType": false,
             "name": "name",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9215",
-            "snapshotId": "21a9217",
+            "relation": "liquibase.structure.core.Table#4e93217",
+            "snapshotId": "4e93219",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -278,8 +278,8 @@
             "certainDataType": false,
             "name": "name",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9205",
-            "snapshotId": "21a9207",
+            "relation": "liquibase.structure.core.Table#4e93207",
+            "snapshotId": "4e93209",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -291,8 +291,8 @@
             "certainDataType": false,
             "name": "name",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9192",
-            "snapshotId": "21a9194",
+            "relation": "liquibase.structure.core.Table#4e93194",
+            "snapshotId": "4e93196",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -304,8 +304,8 @@
             "certainDataType": false,
             "name": "order_date",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9221",
-            "snapshotId": "21a9226",
+            "relation": "liquibase.structure.core.Table#4e93223",
+            "snapshotId": "4e93228",
             "type": {
               "typeName": "DATETIME"
             }
@@ -316,8 +316,8 @@
             "certainDataType": false,
             "name": "order_id",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9248",
-            "snapshotId": "21a9251",
+            "relation": "liquibase.structure.core.Table#4e93252",
+            "snapshotId": "4e93255",
             "type": {
               "typeName": "BIGINT"
             }
@@ -328,8 +328,8 @@
             "certainDataType": false,
             "name": "order_status",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9221",
-            "snapshotId": "21a9229",
+            "relation": "liquibase.structure.core.Table#4e93223",
+            "snapshotId": "4e93231",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -341,8 +341,8 @@
             "certainDataType": false,
             "name": "password",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9192",
-            "snapshotId": "21a9196",
+            "relation": "liquibase.structure.core.Table#4e93194",
+            "snapshotId": "4e93198",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -354,8 +354,8 @@
             "certainDataType": false,
             "name": "payment_method",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9221",
-            "snapshotId": "21a9228",
+            "relation": "liquibase.structure.core.Table#4e93223",
+            "snapshotId": "4e93230",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -367,8 +367,8 @@
             "certainDataType": false,
             "name": "picture",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9205",
-            "snapshotId": "21a9209",
+            "relation": "liquibase.structure.core.Table#4e93207",
+            "snapshotId": "4e93211",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -380,8 +380,8 @@
             "certainDataType": false,
             "name": "price",
             "nullable": false,
-            "relation": "liquibase.structure.core.Table#21a9205",
-            "snapshotId": "21a9210",
+            "relation": "liquibase.structure.core.Table#4e93207",
+            "snapshotId": "4e93212",
             "type": {
               "typeName": "INT"
             }
@@ -392,8 +392,8 @@
             "certainDataType": false,
             "name": "product_id",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9180",
-            "snapshotId": "21a9184",
+            "relation": "liquibase.structure.core.Table#4e93182",
+            "snapshotId": "4e93186",
             "type": {
               "typeName": "BIGINT"
             }
@@ -404,8 +404,8 @@
             "certainDataType": false,
             "name": "product_id",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9232",
-            "snapshotId": "21a9236",
+            "relation": "liquibase.structure.core.Table#4e93234",
+            "snapshotId": "4e93238",
             "type": {
               "typeName": "BIGINT"
             }
@@ -416,8 +416,8 @@
             "certainDataType": false,
             "name": "product_id",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9248",
-            "snapshotId": "21a9252",
+            "relation": "liquibase.structure.core.Table#4e93252",
+            "snapshotId": "4e93256",
             "type": {
               "typeName": "BIGINT"
             }
@@ -428,8 +428,8 @@
             "certainDataType": false,
             "name": "product_id",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9241",
-            "snapshotId": "21a9245",
+            "relation": "liquibase.structure.core.Table#4e93243",
+            "snapshotId": "4e93247",
             "type": {
               "typeName": "BIGINT"
             }
@@ -440,8 +440,8 @@
             "certainDataType": false,
             "name": "quantity",
             "nullable": false,
-            "relation": "liquibase.structure.core.Table#21a9205",
-            "snapshotId": "21a9211",
+            "relation": "liquibase.structure.core.Table#4e93207",
+            "snapshotId": "4e93213",
             "type": {
               "typeName": "INT"
             }
@@ -452,8 +452,8 @@
             "certainDataType": false,
             "name": "role",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9192",
-            "snapshotId": "21a9200",
+            "relation": "liquibase.structure.core.Table#4e93194",
+            "snapshotId": "4e93202",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -465,8 +465,8 @@
             "certainDataType": false,
             "name": "shipping_address",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9221",
-            "snapshotId": "21a9227",
+            "relation": "liquibase.structure.core.Table#4e93223",
+            "snapshotId": "4e93229",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -478,8 +478,8 @@
             "certainDataType": false,
             "name": "star",
             "nullable": false,
-            "relation": "liquibase.structure.core.Table#21a9241",
-            "snapshotId": "21a9244",
+            "relation": "liquibase.structure.core.Table#4e93243",
+            "snapshotId": "4e93246",
             "type": {
               "typeName": "INT"
             }
@@ -490,8 +490,8 @@
             "certainDataType": false,
             "name": "total_price",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9221",
-            "snapshotId": "21a9225",
+            "relation": "liquibase.structure.core.Table#4e93223",
+            "snapshotId": "4e93227",
             "type": {
               "typeName": "DECIMAL"
             }
@@ -502,8 +502,8 @@
             "certainDataType": false,
             "name": "user_id",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9187",
-            "snapshotId": "21a9189",
+            "relation": "liquibase.structure.core.Table#4e93189",
+            "snapshotId": "4e93191",
             "type": {
               "typeName": "BIGINT"
             }
@@ -514,8 +514,8 @@
             "certainDataType": false,
             "name": "user_id",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9232",
-            "snapshotId": "21a9237",
+            "relation": "liquibase.structure.core.Table#4e93234",
+            "snapshotId": "4e93239",
             "type": {
               "typeName": "BIGINT"
             }
@@ -526,8 +526,20 @@
             "certainDataType": false,
             "name": "user_id",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9221",
-            "snapshotId": "21a9224",
+            "relation": "liquibase.structure.core.Table#4e93223",
+            "snapshotId": "4e93226",
+            "type": {
+              "typeName": "BIGINT"
+            }
+          }
+        },
+        {
+          "column": {
+            "certainDataType": false,
+            "name": "user_id",
+            "nullable": true,
+            "relation": "liquibase.structure.core.Table#4e93243",
+            "snapshotId": "4e93248",
             "type": {
               "typeName": "BIGINT"
             }
@@ -538,8 +550,8 @@
             "certainDataType": false,
             "name": "zip_code",
             "nullable": true,
-            "relation": "liquibase.structure.core.Table#21a9192",
-            "snapshotId": "21a9198",
+            "relation": "liquibase.structure.core.Table#4e93194",
+            "snapshotId": "4e93200",
             "type": {
               "columnSize": "255!{java.lang.Integer}",
               "typeName": "VARCHAR"
@@ -552,161 +564,177 @@
         {
           "foreignKey": {
             "foreignKeyColumns": [
-              "liquibase.structure.core.Column#21a9189"
+              "liquibase.structure.core.Column#4e93191"
             ]
             ,
-            "foreignKeyTable": "liquibase.structure.core.Table#21a9187",
+            "foreignKeyTable": "liquibase.structure.core.Table#4e93189",
             "name": "FK_CARTS_ON_USER",
             "primaryKeyColumns": [
-              "liquibase.structure.core.Column#21a9191"
+              "liquibase.structure.core.Column#4e93193"
             ]
             ,
-            "primaryKeyTable": "liquibase.structure.core.Table#21a9192",
-            "snapshotId": "21a9190"
+            "primaryKeyTable": "liquibase.structure.core.Table#4e93194",
+            "snapshotId": "4e93192"
           }
         },
         {
           "foreignKey": {
             "foreignKeyColumns": [
-              "liquibase.structure.core.Column#21a9183"
+              "liquibase.structure.core.Column#4e93185"
             ]
             ,
-            "foreignKeyTable": "liquibase.structure.core.Table#21a9180",
+            "foreignKeyTable": "liquibase.structure.core.Table#4e93182",
             "name": "FK_CART_PRODUCTS_ON_CART",
             "primaryKeyColumns": [
-              "liquibase.structure.core.Column#21a9186"
+              "liquibase.structure.core.Column#4e93188"
             ]
             ,
-            "primaryKeyTable": "liquibase.structure.core.Table#21a9187",
-            "snapshotId": "21a9185"
+            "primaryKeyTable": "liquibase.structure.core.Table#4e93189",
+            "snapshotId": "4e93187"
           }
         },
         {
           "foreignKey": {
             "foreignKeyColumns": [
-              "liquibase.structure.core.Column#21a9184"
+              "liquibase.structure.core.Column#4e93186"
             ]
             ,
-            "foreignKeyTable": "liquibase.structure.core.Table#21a9180",
+            "foreignKeyTable": "liquibase.structure.core.Table#4e93182",
             "name": "FK_CART_PRODUCTS_ON_PRODUCT",
             "primaryKeyColumns": [
-              "liquibase.structure.core.Column#21a9204"
+              "liquibase.structure.core.Column#4e93206"
             ]
             ,
-            "primaryKeyTable": "liquibase.structure.core.Table#21a9205",
-            "snapshotId": "21a9203"
+            "primaryKeyTable": "liquibase.structure.core.Table#4e93207",
+            "snapshotId": "4e93205"
           }
         },
         {
           "foreignKey": {
             "foreignKeyColumns": [
-              "liquibase.structure.core.Column#21a9236"
+              "liquibase.structure.core.Column#4e93238"
             ]
             ,
-            "foreignKeyTable": "liquibase.structure.core.Table#21a9232",
+            "foreignKeyTable": "liquibase.structure.core.Table#4e93234",
             "name": "FK_COMMENTS_ON_PRODUCT",
             "primaryKeyColumns": [
-              "liquibase.structure.core.Column#21a9204"
+              "liquibase.structure.core.Column#4e93206"
             ]
             ,
-            "primaryKeyTable": "liquibase.structure.core.Table#21a9205",
-            "snapshotId": "21a9238"
+            "primaryKeyTable": "liquibase.structure.core.Table#4e93207",
+            "snapshotId": "4e93240"
           }
         },
         {
           "foreignKey": {
             "foreignKeyColumns": [
-              "liquibase.structure.core.Column#21a9237"
+              "liquibase.structure.core.Column#4e93239"
             ]
             ,
-            "foreignKeyTable": "liquibase.structure.core.Table#21a9232",
+            "foreignKeyTable": "liquibase.structure.core.Table#4e93234",
             "name": "FK_COMMENTS_ON_USER",
             "primaryKeyColumns": [
-              "liquibase.structure.core.Column#21a9191"
+              "liquibase.structure.core.Column#4e93193"
             ]
             ,
-            "primaryKeyTable": "liquibase.structure.core.Table#21a9192",
-            "snapshotId": "21a9239"
+            "primaryKeyTable": "liquibase.structure.core.Table#4e93194",
+            "snapshotId": "4e93241"
           }
         },
         {
           "foreignKey": {
             "foreignKeyColumns": [
-              "liquibase.structure.core.Column#21a9224"
+              "liquibase.structure.core.Column#4e93226"
             ]
             ,
-            "foreignKeyTable": "liquibase.structure.core.Table#21a9221",
+            "foreignKeyTable": "liquibase.structure.core.Table#4e93223",
             "name": "FK_ORDERS_ON_USER",
             "primaryKeyColumns": [
-              "liquibase.structure.core.Column#21a9191"
+              "liquibase.structure.core.Column#4e93193"
             ]
             ,
-            "primaryKeyTable": "liquibase.structure.core.Table#21a9192",
-            "snapshotId": "21a9230"
+            "primaryKeyTable": "liquibase.structure.core.Table#4e93194",
+            "snapshotId": "4e93232"
           }
         },
         {
           "foreignKey": {
             "foreignKeyColumns": [
-              "liquibase.structure.core.Column#21a9251"
+              "liquibase.structure.core.Column#4e93255"
             ]
             ,
-            "foreignKeyTable": "liquibase.structure.core.Table#21a9248",
+            "foreignKeyTable": "liquibase.structure.core.Table#4e93252",
             "name": "FK_ORDER_PRODUCTS_ON_ORDER",
             "primaryKeyColumns": [
-              "liquibase.structure.core.Column#21a9223"
+              "liquibase.structure.core.Column#4e93225"
             ]
             ,
-            "primaryKeyTable": "liquibase.structure.core.Table#21a9221",
-            "snapshotId": "21a9253"
+            "primaryKeyTable": "liquibase.structure.core.Table#4e93223",
+            "snapshotId": "4e93257"
           }
         },
         {
           "foreignKey": {
             "foreignKeyColumns": [
-              "liquibase.structure.core.Column#21a9252"
+              "liquibase.structure.core.Column#4e93256"
             ]
             ,
-            "foreignKeyTable": "liquibase.structure.core.Table#21a9248",
+            "foreignKeyTable": "liquibase.structure.core.Table#4e93252",
             "name": "FK_ORDER_PRODUCTS_ON_PRODUCT",
             "primaryKeyColumns": [
-              "liquibase.structure.core.Column#21a9204"
+              "liquibase.structure.core.Column#4e93206"
             ]
             ,
-            "primaryKeyTable": "liquibase.structure.core.Table#21a9205",
-            "snapshotId": "21a9254"
+            "primaryKeyTable": "liquibase.structure.core.Table#4e93207",
+            "snapshotId": "4e93258"
           }
         },
         {
           "foreignKey": {
             "foreignKeyColumns": [
-              "liquibase.structure.core.Column#21a9212"
+              "liquibase.structure.core.Column#4e93214"
             ]
             ,
-            "foreignKeyTable": "liquibase.structure.core.Table#21a9205",
+            "foreignKeyTable": "liquibase.structure.core.Table#4e93207",
             "name": "FK_PRODUCTS_ON_CATEGORY",
             "primaryKeyColumns": [
-              "liquibase.structure.core.Column#21a9214"
+              "liquibase.structure.core.Column#4e93216"
             ]
             ,
-            "primaryKeyTable": "liquibase.structure.core.Table#21a9215",
-            "snapshotId": "21a9213"
+            "primaryKeyTable": "liquibase.structure.core.Table#4e93217",
+            "snapshotId": "4e93215"
           }
         },
         {
           "foreignKey": {
             "foreignKeyColumns": [
-              "liquibase.structure.core.Column#21a9245"
+              "liquibase.structure.core.Column#4e93247"
             ]
             ,
-            "foreignKeyTable": "liquibase.structure.core.Table#21a9241",
+            "foreignKeyTable": "liquibase.structure.core.Table#4e93243",
             "name": "FK_RATINGS_ON_PRODUCT",
             "primaryKeyColumns": [
-              "liquibase.structure.core.Column#21a9204"
+              "liquibase.structure.core.Column#4e93206"
             ]
             ,
-            "primaryKeyTable": "liquibase.structure.core.Table#21a9205",
-            "snapshotId": "21a9246"
+            "primaryKeyTable": "liquibase.structure.core.Table#4e93207",
+            "snapshotId": "4e93249"
+          }
+        },
+        {
+          "foreignKey": {
+            "foreignKeyColumns": [
+              "liquibase.structure.core.Column#4e93248"
+            ]
+            ,
+            "foreignKeyTable": "liquibase.structure.core.Table#4e93243",
+            "name": "FK_RATINGS_ON_USER",
+            "primaryKeyColumns": [
+              "liquibase.structure.core.Column#4e93193"
+            ]
+            ,
+            "primaryKeyTable": "liquibase.structure.core.Table#4e93194",
+            "snapshotId": "4e93250"
           }
         }
       ]
@@ -715,108 +743,108 @@
         {
           "index": {
             "columns": [
-              "liquibase.structure.core.Column#21a9182"
+              "liquibase.structure.core.Column#4e93184"
             ]
             ,
             "name": "IX_pk_cart_products",
-            "snapshotId": "21a9181",
-            "table": "liquibase.structure.core.Table#21a9180",
+            "snapshotId": "4e93183",
+            "table": "liquibase.structure.core.Table#4e93182",
             "unique": true
           }
         },
         {
           "index": {
             "columns": [
-              "liquibase.structure.core.Column#21a9186"
+              "liquibase.structure.core.Column#4e93188"
             ]
             ,
             "name": "IX_pk_carts",
-            "snapshotId": "21a9188",
-            "table": "liquibase.structure.core.Table#21a9187",
+            "snapshotId": "4e93190",
+            "table": "liquibase.structure.core.Table#4e93189",
             "unique": true
           }
         },
         {
           "index": {
             "columns": [
-              "liquibase.structure.core.Column#21a9214"
+              "liquibase.structure.core.Column#4e93216"
             ]
             ,
             "name": "IX_pk_categories",
-            "snapshotId": "21a9216",
-            "table": "liquibase.structure.core.Table#21a9215",
+            "snapshotId": "4e93218",
+            "table": "liquibase.structure.core.Table#4e93217",
             "unique": true
           }
         },
         {
           "index": {
             "columns": [
-              "liquibase.structure.core.Column#21a9234"
+              "liquibase.structure.core.Column#4e93236"
             ]
             ,
             "name": "IX_pk_comments",
-            "snapshotId": "21a9233",
-            "table": "liquibase.structure.core.Table#21a9232",
+            "snapshotId": "4e93235",
+            "table": "liquibase.structure.core.Table#4e93234",
             "unique": true
           }
         },
         {
           "index": {
             "columns": [
-              "liquibase.structure.core.Column#21a9250"
+              "liquibase.structure.core.Column#4e93254"
             ]
             ,
             "name": "IX_pk_order_products",
-            "snapshotId": "21a9249",
-            "table": "liquibase.structure.core.Table#21a9248",
+            "snapshotId": "4e93253",
+            "table": "liquibase.structure.core.Table#4e93252",
             "unique": true
           }
         },
         {
           "index": {
             "columns": [
-              "liquibase.structure.core.Column#21a9223"
+              "liquibase.structure.core.Column#4e93225"
             ]
             ,
             "name": "IX_pk_orders",
-            "snapshotId": "21a9222",
-            "table": "liquibase.structure.core.Table#21a9221",
+            "snapshotId": "4e93224",
+            "table": "liquibase.structure.core.Table#4e93223",
             "unique": true
           }
         },
         {
           "index": {
             "columns": [
-              "liquibase.structure.core.Column#21a9204"
+              "liquibase.structure.core.Column#4e93206"
             ]
             ,
             "name": "IX_pk_products",
-            "snapshotId": "21a9206",
-            "table": "liquibase.structure.core.Table#21a9205",
+            "snapshotId": "4e93208",
+            "table": "liquibase.structure.core.Table#4e93207",
             "unique": true
           }
         },
         {
           "index": {
             "columns": [
-              "liquibase.structure.core.Column#21a9243"
+              "liquibase.structure.core.Column#4e93245"
             ]
             ,
             "name": "IX_pk_ratings",
-            "snapshotId": "21a9242",
-            "table": "liquibase.structure.core.Table#21a9241",
+            "snapshotId": "4e93244",
+            "table": "liquibase.structure.core.Table#4e93243",
             "unique": true
           }
         },
         {
           "index": {
             "columns": [
-              "liquibase.structure.core.Column#21a9191"
+              "liquibase.structure.core.Column#4e93193"
             ]
             ,
             "name": "IX_pk_users",
-            "snapshotId": "21a9193",
-            "table": "liquibase.structure.core.Table#21a9192",
+            "snapshotId": "4e93195",
+            "table": "liquibase.structure.core.Table#4e93194",
             "unique": true
           }
         }
@@ -825,110 +853,110 @@
       "liquibase.structure.core.PrimaryKey": [
         {
           "primaryKey": {
-            "backingIndex": "liquibase.structure.core.Index#21a9181",
+            "backingIndex": "liquibase.structure.core.Index#4e93183",
             "columns": [
-              "liquibase.structure.core.Column#21a9182"
+              "liquibase.structure.core.Column#4e93184"
             ]
             ,
             "name": "pk_cart_products",
-            "snapshotId": "21a9220",
-            "table": "liquibase.structure.core.Table#21a9180"
+            "snapshotId": "4e93222",
+            "table": "liquibase.structure.core.Table#4e93182"
           }
         },
         {
           "primaryKey": {
-            "backingIndex": "liquibase.structure.core.Index#21a9188",
+            "backingIndex": "liquibase.structure.core.Index#4e93190",
             "columns": [
-              "liquibase.structure.core.Column#21a9186"
+              "liquibase.structure.core.Column#4e93188"
             ]
             ,
             "name": "pk_carts",
-            "snapshotId": "21a9202",
-            "table": "liquibase.structure.core.Table#21a9187"
+            "snapshotId": "4e93204",
+            "table": "liquibase.structure.core.Table#4e93189"
           }
         },
         {
           "primaryKey": {
-            "backingIndex": "liquibase.structure.core.Index#21a9216",
+            "backingIndex": "liquibase.structure.core.Index#4e93218",
             "columns": [
-              "liquibase.structure.core.Column#21a9214"
+              "liquibase.structure.core.Column#4e93216"
             ]
             ,
             "name": "pk_categories",
-            "snapshotId": "21a9218",
-            "table": "liquibase.structure.core.Table#21a9215"
+            "snapshotId": "4e93220",
+            "table": "liquibase.structure.core.Table#4e93217"
           }
         },
         {
           "primaryKey": {
-            "backingIndex": "liquibase.structure.core.Index#21a9233",
+            "backingIndex": "liquibase.structure.core.Index#4e93235",
             "columns": [
-              "liquibase.structure.core.Column#21a9234"
+              "liquibase.structure.core.Column#4e93236"
             ]
             ,
             "name": "pk_comments",
-            "snapshotId": "21a9240",
-            "table": "liquibase.structure.core.Table#21a9232"
+            "snapshotId": "4e93242",
+            "table": "liquibase.structure.core.Table#4e93234"
           }
         },
         {
           "primaryKey": {
-            "backingIndex": "liquibase.structure.core.Index#21a9249",
+            "backingIndex": "liquibase.structure.core.Index#4e93253",
             "columns": [
-              "liquibase.structure.core.Column#21a9250"
+              "liquibase.structure.core.Column#4e93254"
             ]
             ,
             "name": "pk_order_products",
-            "snapshotId": "21a9255",
-            "table": "liquibase.structure.core.Table#21a9248"
+            "snapshotId": "4e93259",
+            "table": "liquibase.structure.core.Table#4e93252"
           }
         },
         {
           "primaryKey": {
-            "backingIndex": "liquibase.structure.core.Index#21a9222",
+            "backingIndex": "liquibase.structure.core.Index#4e93224",
             "columns": [
-              "liquibase.structure.core.Column#21a9223"
+              "liquibase.structure.core.Column#4e93225"
             ]
             ,
             "name": "pk_orders",
-            "snapshotId": "21a9231",
-            "table": "liquibase.structure.core.Table#21a9221"
+            "snapshotId": "4e93233",
+            "table": "liquibase.structure.core.Table#4e93223"
           }
         },
         {
           "primaryKey": {
-            "backingIndex": "liquibase.structure.core.Index#21a9206",
+            "backingIndex": "liquibase.structure.core.Index#4e93208",
             "columns": [
-              "liquibase.structure.core.Column#21a9204"
+              "liquibase.structure.core.Column#4e93206"
             ]
             ,
             "name": "pk_products",
-            "snapshotId": "21a9219",
-            "table": "liquibase.structure.core.Table#21a9205"
+            "snapshotId": "4e93221",
+            "table": "liquibase.structure.core.Table#4e93207"
           }
         },
         {
           "primaryKey": {
-            "backingIndex": "liquibase.structure.core.Index#21a9242",
+            "backingIndex": "liquibase.structure.core.Index#4e93244",
             "columns": [
-              "liquibase.structure.core.Column#21a9243"
+              "liquibase.structure.core.Column#4e93245"
             ]
             ,
             "name": "pk_ratings",
-            "snapshotId": "21a9247",
-            "table": "liquibase.structure.core.Table#21a9241"
+            "snapshotId": "4e93251",
+            "table": "liquibase.structure.core.Table#4e93243"
           }
         },
         {
           "primaryKey": {
-            "backingIndex": "liquibase.structure.core.Index#21a9193",
+            "backingIndex": "liquibase.structure.core.Index#4e93195",
             "columns": [
-              "liquibase.structure.core.Column#21a9191"
+              "liquibase.structure.core.Column#4e93193"
             ]
             ,
             "name": "pk_users",
-            "snapshotId": "21a9201",
-            "table": "liquibase.structure.core.Table#21a9192"
+            "snapshotId": "4e93203",
+            "table": "liquibase.structure.core.Table#4e93194"
           }
         }
       ]
@@ -936,9 +964,9 @@
       "liquibase.structure.core.Schema": [
         {
           "schema": {
-            "catalog": "liquibase.structure.core.Catalog#21a9178",
+            "catalog": "liquibase.structure.core.Catalog#4e93180",
             "default": true,
-            "snapshotId": "21a9179"
+            "snapshotId": "4e93181"
           }
         }
       ]
@@ -947,206 +975,208 @@
         {
           "table": {
             "columns": [
-              "liquibase.structure.core.Column#21a9182",
-              "liquibase.structure.core.Column#21a9183",
-              "liquibase.structure.core.Column#21a9184"
+              "liquibase.structure.core.Column#4e93184",
+              "liquibase.structure.core.Column#4e93185",
+              "liquibase.structure.core.Column#4e93186"
             ]
             ,
             "indexes": [
-              "liquibase.structure.core.Index#21a9181"
+              "liquibase.structure.core.Index#4e93183"
             ]
             ,
             "name": "cart_products",
             "outgoingForeignKeys": [
-              "liquibase.structure.core.ForeignKey#21a9185",
-              "liquibase.structure.core.ForeignKey#21a9203"
+              "liquibase.structure.core.ForeignKey#4e93187",
+              "liquibase.structure.core.ForeignKey#4e93205"
             ]
             ,
-            "primaryKey": "liquibase.structure.core.PrimaryKey#21a9220",
-            "schema": "liquibase.structure.core.Schema#21a9179",
-            "snapshotId": "21a9180"
+            "primaryKey": "liquibase.structure.core.PrimaryKey#4e93222",
+            "schema": "liquibase.structure.core.Schema#4e93181",
+            "snapshotId": "4e93182"
           }
         },
         {
           "table": {
             "columns": [
-              "liquibase.structure.core.Column#21a9186",
-              "liquibase.structure.core.Column#21a9189"
+              "liquibase.structure.core.Column#4e93188",
+              "liquibase.structure.core.Column#4e93191"
             ]
             ,
             "indexes": [
-              "liquibase.structure.core.Index#21a9188"
+              "liquibase.structure.core.Index#4e93190"
             ]
             ,
             "name": "carts",
             "outgoingForeignKeys": [
-              "liquibase.structure.core.ForeignKey#21a9190"
+              "liquibase.structure.core.ForeignKey#4e93192"
             ]
             ,
-            "primaryKey": "liquibase.structure.core.PrimaryKey#21a9202",
-            "schema": "liquibase.structure.core.Schema#21a9179",
-            "snapshotId": "21a9187"
+            "primaryKey": "liquibase.structure.core.PrimaryKey#4e93204",
+            "schema": "liquibase.structure.core.Schema#4e93181",
+            "snapshotId": "4e93189"
           }
         },
         {
           "table": {
             "columns": [
-              "liquibase.structure.core.Column#21a9214",
-              "liquibase.structure.core.Column#21a9217"
+              "liquibase.structure.core.Column#4e93216",
+              "liquibase.structure.core.Column#4e93219"
             ]
             ,
             "indexes": [
-              "liquibase.structure.core.Index#21a9216"
+              "liquibase.structure.core.Index#4e93218"
             ]
             ,
             "name": "categories",
-            "primaryKey": "liquibase.structure.core.PrimaryKey#21a9218",
-            "schema": "liquibase.structure.core.Schema#21a9179",
-            "snapshotId": "21a9215"
+            "primaryKey": "liquibase.structure.core.PrimaryKey#4e93220",
+            "schema": "liquibase.structure.core.Schema#4e93181",
+            "snapshotId": "4e93217"
           }
         },
         {
           "table": {
             "columns": [
-              "liquibase.structure.core.Column#21a9234",
-              "liquibase.structure.core.Column#21a9235",
-              "liquibase.structure.core.Column#21a9236",
-              "liquibase.structure.core.Column#21a9237"
+              "liquibase.structure.core.Column#4e93236",
+              "liquibase.structure.core.Column#4e93237",
+              "liquibase.structure.core.Column#4e93238",
+              "liquibase.structure.core.Column#4e93239"
             ]
             ,
             "indexes": [
-              "liquibase.structure.core.Index#21a9233"
+              "liquibase.structure.core.Index#4e93235"
             ]
             ,
             "name": "comments",
             "outgoingForeignKeys": [
-              "liquibase.structure.core.ForeignKey#21a9238",
-              "liquibase.structure.core.ForeignKey#21a9239"
+              "liquibase.structure.core.ForeignKey#4e93240",
+              "liquibase.structure.core.ForeignKey#4e93241"
             ]
             ,
-            "primaryKey": "liquibase.structure.core.PrimaryKey#21a9240",
-            "schema": "liquibase.structure.core.Schema#21a9179",
-            "snapshotId": "21a9232"
+            "primaryKey": "liquibase.structure.core.PrimaryKey#4e93242",
+            "schema": "liquibase.structure.core.Schema#4e93181",
+            "snapshotId": "4e93234"
           }
         },
         {
           "table": {
             "columns": [
-              "liquibase.structure.core.Column#21a9250",
-              "liquibase.structure.core.Column#21a9251",
-              "liquibase.structure.core.Column#21a9252"
+              "liquibase.structure.core.Column#4e93254",
+              "liquibase.structure.core.Column#4e93255",
+              "liquibase.structure.core.Column#4e93256"
             ]
             ,
             "indexes": [
-              "liquibase.structure.core.Index#21a9249"
+              "liquibase.structure.core.Index#4e93253"
             ]
             ,
             "name": "order_products",
             "outgoingForeignKeys": [
-              "liquibase.structure.core.ForeignKey#21a9253",
-              "liquibase.structure.core.ForeignKey#21a9254"
+              "liquibase.structure.core.ForeignKey#4e93257",
+              "liquibase.structure.core.ForeignKey#4e93258"
             ]
             ,
-            "primaryKey": "liquibase.structure.core.PrimaryKey#21a9255",
-            "schema": "liquibase.structure.core.Schema#21a9179",
-            "snapshotId": "21a9248"
+            "primaryKey": "liquibase.structure.core.PrimaryKey#4e93259",
+            "schema": "liquibase.structure.core.Schema#4e93181",
+            "snapshotId": "4e93252"
           }
         },
         {
           "table": {
             "columns": [
-              "liquibase.structure.core.Column#21a9223",
-              "liquibase.structure.core.Column#21a9224",
-              "liquibase.structure.core.Column#21a9225",
-              "liquibase.structure.core.Column#21a9226",
-              "liquibase.structure.core.Column#21a9227",
-              "liquibase.structure.core.Column#21a9228",
-              "liquibase.structure.core.Column#21a9229"
+              "liquibase.structure.core.Column#4e93225",
+              "liquibase.structure.core.Column#4e93226",
+              "liquibase.structure.core.Column#4e93227",
+              "liquibase.structure.core.Column#4e93228",
+              "liquibase.structure.core.Column#4e93229",
+              "liquibase.structure.core.Column#4e93230",
+              "liquibase.structure.core.Column#4e93231"
             ]
             ,
             "indexes": [
-              "liquibase.structure.core.Index#21a9222"
+              "liquibase.structure.core.Index#4e93224"
             ]
             ,
             "name": "orders",
             "outgoingForeignKeys": [
-              "liquibase.structure.core.ForeignKey#21a9230"
+              "liquibase.structure.core.ForeignKey#4e93232"
             ]
             ,
-            "primaryKey": "liquibase.structure.core.PrimaryKey#21a9231",
-            "schema": "liquibase.structure.core.Schema#21a9179",
-            "snapshotId": "21a9221"
+            "primaryKey": "liquibase.structure.core.PrimaryKey#4e93233",
+            "schema": "liquibase.structure.core.Schema#4e93181",
+            "snapshotId": "4e93223"
           }
         },
         {
           "table": {
             "columns": [
-              "liquibase.structure.core.Column#21a9204",
-              "liquibase.structure.core.Column#21a9207",
-              "liquibase.structure.core.Column#21a9208",
-              "liquibase.structure.core.Column#21a9209",
-              "liquibase.structure.core.Column#21a9210",
-              "liquibase.structure.core.Column#21a9211",
-              "liquibase.structure.core.Column#21a9212"
+              "liquibase.structure.core.Column#4e93206",
+              "liquibase.structure.core.Column#4e93209",
+              "liquibase.structure.core.Column#4e93210",
+              "liquibase.structure.core.Column#4e93211",
+              "liquibase.structure.core.Column#4e93212",
+              "liquibase.structure.core.Column#4e93213",
+              "liquibase.structure.core.Column#4e93214"
             ]
             ,
             "indexes": [
-              "liquibase.structure.core.Index#21a9206"
+              "liquibase.structure.core.Index#4e93208"
             ]
             ,
             "name": "products",
             "outgoingForeignKeys": [
-              "liquibase.structure.core.ForeignKey#21a9213"
+              "liquibase.structure.core.ForeignKey#4e93215"
             ]
             ,
-            "primaryKey": "liquibase.structure.core.PrimaryKey#21a9219",
-            "schema": "liquibase.structure.core.Schema#21a9179",
-            "snapshotId": "21a9205"
+            "primaryKey": "liquibase.structure.core.PrimaryKey#4e93221",
+            "schema": "liquibase.structure.core.Schema#4e93181",
+            "snapshotId": "4e93207"
           }
         },
         {
           "table": {
             "columns": [
-              "liquibase.structure.core.Column#21a9243",
-              "liquibase.structure.core.Column#21a9244",
-              "liquibase.structure.core.Column#21a9245"
+              "liquibase.structure.core.Column#4e93245",
+              "liquibase.structure.core.Column#4e93246",
+              "liquibase.structure.core.Column#4e93247",
+              "liquibase.structure.core.Column#4e93248"
             ]
             ,
             "indexes": [
-              "liquibase.structure.core.Index#21a9242"
+              "liquibase.structure.core.Index#4e93244"
             ]
             ,
             "name": "ratings",
             "outgoingForeignKeys": [
-              "liquibase.structure.core.ForeignKey#21a9246"
+              "liquibase.structure.core.ForeignKey#4e93249",
+              "liquibase.structure.core.ForeignKey#4e93250"
             ]
             ,
-            "primaryKey": "liquibase.structure.core.PrimaryKey#21a9247",
-            "schema": "liquibase.structure.core.Schema#21a9179",
-            "snapshotId": "21a9241"
+            "primaryKey": "liquibase.structure.core.PrimaryKey#4e93251",
+            "schema": "liquibase.structure.core.Schema#4e93181",
+            "snapshotId": "4e93243"
           }
         },
         {
           "table": {
             "columns": [
-              "liquibase.structure.core.Column#21a9191",
-              "liquibase.structure.core.Column#21a9194",
-              "liquibase.structure.core.Column#21a9195",
-              "liquibase.structure.core.Column#21a9196",
-              "liquibase.structure.core.Column#21a9197",
-              "liquibase.structure.core.Column#21a9198",
-              "liquibase.structure.core.Column#21a9199",
-              "liquibase.structure.core.Column#21a9200"
+              "liquibase.structure.core.Column#4e93193",
+              "liquibase.structure.core.Column#4e93196",
+              "liquibase.structure.core.Column#4e93197",
+              "liquibase.structure.core.Column#4e93198",
+              "liquibase.structure.core.Column#4e93199",
+              "liquibase.structure.core.Column#4e93200",
+              "liquibase.structure.core.Column#4e93201",
+              "liquibase.structure.core.Column#4e93202"
             ]
             ,
             "indexes": [
-              "liquibase.structure.core.Index#21a9193"
+              "liquibase.structure.core.Index#4e93195"
             ]
             ,
             "name": "users",
-            "primaryKey": "liquibase.structure.core.PrimaryKey#21a9201",
-            "schema": "liquibase.structure.core.Schema#21a9179",
-            "snapshotId": "21a9192"
+            "primaryKey": "liquibase.structure.core.PrimaryKey#4e93203",
+            "schema": "liquibase.structure.core.Schema#4e93181",
+            "snapshotId": "4e93194"
           }
         }
       ]

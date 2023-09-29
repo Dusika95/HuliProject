@@ -26,6 +26,14 @@ public class ProductController {
             return ResponseEntity.status(400).body(e.getMessage());
         }
     }
+    @GetMapping("/all-product/{id}")
+    public ResponseEntity getAllProductByCategory(@PathVariable Long id){
+        try{
+            return ResponseEntity.status(200).body(productService.getAllProduct());
+        }catch (Exception e){
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+    }
 
     @GetMapping("/all-product/{id}")
     public ResponseEntity getProduct(@PathVariable Long id){

@@ -1,6 +1,5 @@
 package huli.example.huliwebshop.controllers;
 
-import huli.example.huliwebshop.DTOs.ProductCreateDTO;
 import huli.example.huliwebshop.models.Category;
 import huli.example.huliwebshop.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

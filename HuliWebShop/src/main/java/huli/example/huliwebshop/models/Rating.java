@@ -13,14 +13,19 @@ public class Rating {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Rating() {
 
     }
 
-    public Rating(Long id, int star, Product product) {
+    public Rating(Long id, int star, Product product, User user) {
         this.id = id;
         this.star = star;
         this.product = product;
+        this.user = user;
     }
 
     public Long getId() {
@@ -45,5 +50,13 @@ public class Rating {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -36,6 +36,13 @@ public class User implements UserDetails {
   )
   private List<Comment> comments= new ArrayList<>();
 
+  @OneToMany(
+          mappedBy = "product",
+          cascade = CascadeType.ALL,
+          orphanRemoval = true
+  )
+  private List<Rating> ratings = new ArrayList<>();
+
   public User() {}
 
   public User(Long id, String name, String email, String password, String address, String zipCode, String city, String role, Cart cart, List<Comment> comments) {

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -52,9 +53,41 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<ProductGetToListDTO> getAllProductById(Long id) throws Exception {
+        List<Product> allProducts = new ArrayList<>();
+        allProducts = iProductRepository.findAll();
+        Category category = iCategoryRepository.findById(id).get();
+        if (allProducts.isEmpty()) {
+            throw new Exception("no product yet");
+        } else if (iCategoryRepository.findById(id).isPresent()) {
+            throw new Exception("this category does not exist");
+        } else {
+            List<ProductGetToListDTO> productGetToListDTOS = new ArrayList<>();
+            for (int i = 0; i < allProducts.size(); i++) {
+                if (Objects.equals(allProducts.get(i).getCategory().getId(), category.getId())) {
+                    ProductGetToListDTO productGetToListDTO = new ProductGetToListDTO();
+                    productGetToListDTO.setId(allProducts.get(i).getId());
+                    productGetToListDTO.setName(allProducts.get(i).getName());
+                    productGetToListDTO.setPicture(allProducts.get(i).getPicture());
+                    productGetToListDTO.setCategoryName(allProducts.get(i).getCategory().getName());
+                    productGetToListDTO.setPrice(allProducts.get(i).getPrice());
+                    if (allProducts.get(i).getQuantity() > 0) {
+                        productGetToListDTO.setAvailable(true);
+                    } else {
+                        productGetToListDTO.setAvailable(false);
+                    }
+                    productGetToListDTOS.add(productGetToListDTO);
+
+                }
+            }
+            return productGetToListDTOS;
+        }
+    }
+
+    @Override
     public ProductGetByAloneDTO getByAlone(Long id) throws Exception {
         Product product = iProductRepository.findById(id).get();
-        if (product == null) {
+        if (iProductRepository.findById(id).isPresent()) {
             throw new Exception("that id not found");
         } else {
             ProductGetByAloneDTO productGetByAloneDTO = new ProductGetByAloneDTO();
