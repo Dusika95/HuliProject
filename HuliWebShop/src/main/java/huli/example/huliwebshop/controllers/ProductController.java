@@ -35,7 +35,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/all-product/{id}")
+    @GetMapping("/product/{id}")
     public ResponseEntity getProduct(@PathVariable Long id){
         try {
             return ResponseEntity.ok().body(productService.getByAlone(id));
