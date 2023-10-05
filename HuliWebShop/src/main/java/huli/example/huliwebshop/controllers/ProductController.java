@@ -18,7 +18,7 @@ public class ProductController {
         this.productService= productService;
     }
 
-    @GetMapping("/all-product")
+    @GetMapping
     public ResponseEntity getAllProduct(){
         try{
             return ResponseEntity.status(200).body(productService.getAllProduct());
@@ -26,7 +26,7 @@ public class ProductController {
             return ResponseEntity.status(400).body(e.getMessage());
         }
     }
-    @GetMapping("/all-product/{id}")
+    @GetMapping("/category/{id}")
     public ResponseEntity getAllProductByCategory(@PathVariable Long id){
         try{
             return ResponseEntity.status(200).body(productService.getAllProduct());
@@ -35,7 +35,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity getProduct(@PathVariable Long id){
         try {
             return ResponseEntity.ok().body(productService.getByAlone(id));
@@ -44,7 +44,7 @@ public class ProductController {
         }
     }
 
-    @PostMapping("/admin/create")
+    @PostMapping
     public ResponseEntity createProduct(@RequestBody ProductCreateDTO productCreateDTO){
         try {
             return ResponseEntity.ok().body(productService.createNewProduct(productCreateDTO));
@@ -53,7 +53,7 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/admin/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteProduct(@PathVariable Long id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(productService.deleteProductById(id));
@@ -62,7 +62,7 @@ public class ProductController {
         }
     }
 
-    @PutMapping("admin/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity editProduct(@PathVariable Long id, @RequestBody ProductUpdateDTO productUpdateDTO){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(productService.editProductById(id,productUpdateDTO));
