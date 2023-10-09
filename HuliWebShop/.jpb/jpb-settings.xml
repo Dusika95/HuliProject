@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="DatabaseMigrationSettings" lastSelectedDirectory="db/changelog/#date(&quot;yyyy&quot;)/#date(&quot;MM&quot;)">
+=======
+  <component name="DatabaseMigrationSettings" lastSelectedDirectory="src/main/resources/db/migration" flywayMigrationDescription="">
+>>>>>>> 9915339d4e19cf89b61813949f8c1dbbc0c789cd
     <database-infos>
       <database-info>
         <option name="enabled" value="true" />
@@ -10,7 +14,7 @@
   </component>
   <component name="PersistenceUnitSettings">
     <persistence-units>
-      <persistence-unit name="Default">
+      <persistence-unit name="Default" defaultSearchScope="Project">
         <packages>
           <package value="huli.example.huliwebshop" />
         </packages>

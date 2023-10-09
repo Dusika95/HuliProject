@@ -16,7 +16,7 @@ public class UserController {
   public UserController(UserService userService) {
     this.userService = userService;
   }
-  @GetMapping("/admin/all-users")
+  @GetMapping("/all")
   public ResponseEntity getAllUsers() {
     try {
       return ResponseEntity.status(200).body(userService.getAllUser());
@@ -25,7 +25,7 @@ public class UserController {
     }
   }
 
-  @DeleteMapping("/admin/users/{id}")
+  @DeleteMapping("/{id}")
   public ResponseEntity deleteUser(@PathVariable Long id) {
     try {
       return ResponseEntity.status(HttpStatus.OK).body(userService.deleteUserById(id));
