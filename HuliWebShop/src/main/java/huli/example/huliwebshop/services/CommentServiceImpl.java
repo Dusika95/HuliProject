@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment createNewComment(CommentCreateDTO commentCreateDTO) throws Exception {
+    public String createNewComment(CommentCreateDTO commentCreateDTO) throws Exception {
         Comment comment = new Comment();
         Product product = productValidator(commentCreateDTO.getProductId());
         User user = userValidator(commentCreateDTO.getUserId());
@@ -37,16 +37,16 @@ public class CommentServiceImpl implements CommentService {
         comment.setUser(user);
 
         iCommentRepository.save(comment);
-        return comment;
+        return "addcomment to "+comment.getProduct().getName();
     }
     @Override
-    public Comment deleteCommentById(Long id) throws Exception {
+    public String deleteCommentById(Long id) throws Exception {
         Comment comment = iCommentRepository.findById(id).get();
         if (!iProductRepository.findById(id).isPresent()) {
             throw new Exception("that id does not exist");
         } else {
             iCommentRepository.deleteById(id);
-            return comment;
+            return comment.getComment();
         }
     }
 

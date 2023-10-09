@@ -53,13 +53,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductGetToListDTO> getAllProductById(Long id) throws Exception {
+    public List<ProductGetToListDTO> getAllProductByCategoryId(Long id) throws Exception {
         List<Product> allProducts = new ArrayList<>();
         allProducts = iProductRepository.findAll();
         Category category = iCategoryRepository.findById(id).get();
         if (allProducts.isEmpty()) {
             throw new Exception("no product yet");
-        } else if (iCategoryRepository.findById(id).isPresent()) {
+        } else if (!iCategoryRepository.findById(id).isPresent()) {
             throw new Exception("this category does not exist");
         } else {
             List<ProductGetToListDTO> productGetToListDTOS = new ArrayList<>();
@@ -87,7 +87,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductGetByAloneDTO getByAlone(Long id) throws Exception {
         Product product = iProductRepository.findById(id).get();
-        if (iProductRepository.findById(id).isPresent()) {
+        if (!iProductRepository.findById(id).isPresent()) {
             throw new Exception("that id not found");
         } else {
             ProductGetByAloneDTO productGetByAloneDTO = new ProductGetByAloneDTO();
@@ -135,18 +135,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product deleteProductById(Long id) throws Exception {
+    public String deleteProductById(Long id) throws Exception {
         Product product = iProductRepository.findById(id).get();
+
         if (!iProductRepository.findById(id).isPresent()) {
             throw new Exception("that id not exist");
         } else {
             iProductRepository.deleteById(id);
-            return product;
+            return product.getName();
         }
     }
 
     @Override
-    public Product editProductById(Long id, ProductUpdateDTO productUpdateDTO) throws Exception {
+    public ProductUpdateDTO editProductById(Long id, ProductUpdateDTO productUpdateDTO) throws Exception {
         Product product = iProductRepository.findById(id).get();
         if (!iProductRepository.findById(id).isPresent()) {
             throw new Exception("that id not exist");
@@ -160,7 +161,8 @@ public class ProductServiceImpl implements ProductService {
             Category category = categoryValidator(productUpdateDTO.getCategory());
             product.setCategory(category);
 
-            return iProductRepository.save(product);
+            iProductRepository.save(product);
+            return productUpdateDTO;
         }
     }
 
@@ -171,4 +173,5 @@ public class ProductServiceImpl implements ProductService {
         }
         return category;
     }
+
 }

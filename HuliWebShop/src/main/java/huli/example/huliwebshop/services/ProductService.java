@@ -15,8 +15,8 @@ public interface ProductService {
 
     Product createNewProduct(ProductCreateDTO productCreateDTO) throws Exception;
 
-    Product deleteProductById(Long id) throws Exception;
+    String deleteProductById(Long id) throws Exception;
 
-    Product editProductById(Long id, ProductUpdateDTO productUpdateDTO) throws Exception;
-    List<ProductGetToListDTO> getAllProductById(Long id) throws Exception;
+    ProductUpdateDTO editProductById(Long id, ProductUpdateDTO productUpdateDTO) throws Exception;
+    List<ProductGetToListDTO> getAllProductByCategoryId(Long id) throws Exception;
 }

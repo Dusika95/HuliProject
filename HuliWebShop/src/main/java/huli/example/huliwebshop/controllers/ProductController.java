@@ -18,8 +18,8 @@ public class ProductController {
         this.productService= productService;
     }
 
-    @GetMapping
-    public ResponseEntity getAllProduct(){
+    @GetMapping("/all-products")
+    public ResponseEntity getAllProduct() {
         try{
             return ResponseEntity.status(200).body(productService.getAllProduct());
         }catch (Exception e){
@@ -29,7 +29,7 @@ public class ProductController {
     @GetMapping("/category/{id}")
     public ResponseEntity getAllProductByCategory(@PathVariable Long id){
         try{
-            return ResponseEntity.status(200).body(productService.getAllProduct());
+            return ResponseEntity.status(200).body(productService.getAllProductByCategoryId(id));
         }catch (Exception e){
             return ResponseEntity.status(400).body(e.getMessage());
         }
@@ -44,7 +44,7 @@ public class ProductController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/admin/create")
     public ResponseEntity createProduct(@RequestBody ProductCreateDTO productCreateDTO){
         try {
             return ResponseEntity.ok().body(productService.createNewProduct(productCreateDTO));
@@ -53,7 +53,7 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("admin/{id}")
     public ResponseEntity deleteProduct(@PathVariable Long id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(productService.deleteProductById(id));
@@ -62,7 +62,7 @@ public class ProductController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/admin/{id}")
     public ResponseEntity editProduct(@PathVariable Long id, @RequestBody ProductUpdateDTO productUpdateDTO){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(productService.editProductById(id,productUpdateDTO));

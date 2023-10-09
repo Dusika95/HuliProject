@@ -4,6 +4,7 @@ import huli.example.huliwebshop.DTOs.CartDTO;
 import huli.example.huliwebshop.models.Cart;
 import huli.example.huliwebshop.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*")
@@ -31,4 +32,17 @@ public class CartController {
   public void clearCart(@PathVariable Long userId) {
     cartService.clearCart(userId);
   }
+  /*@PutMapping("/{id")
+  public ResponseEntity editCart(@PathVariable Long id){
+
+  }*/
 }
+/*    @PutMapping("/{id}")
+    public ResponseEntity editProduct(@PathVariable Long id, @RequestBody ProductUpdateDTO productUpdateDTO){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(productService.editProductById(id,productUpdateDTO));
+        } catch (Exception e){
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+
+    }*/

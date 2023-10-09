@@ -29,7 +29,7 @@ public class RatingServiceImpl implements RatingService {
     }
 
     @Override
-    public Rating createRating(RatingCreateDTO ratingCreateDTO) throws Exception {
+    public String createRating(RatingCreateDTO ratingCreateDTO) throws Exception {
         Rating rating = new Rating();
 
         User user = userValidator(ratingCreateDTO.getUserId());
@@ -48,7 +48,7 @@ public class RatingServiceImpl implements RatingService {
         rating.setUser(user);
         rating.setProduct(product);
         iRatingRepository.save(rating);
-        return rating;
+        return "add ratings to "+rating.getProduct().getName();
     }
 
     public Product productValidator(Long id) throws Exception {
