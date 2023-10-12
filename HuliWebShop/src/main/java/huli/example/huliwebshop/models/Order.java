@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -17,8 +18,11 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-   @OneToMany(mappedBy = "order")
-    private Set<OrderProduct> orderProducts = new HashSet<>();
+    @ElementCollection
+    @CollectionTable(name = "order_items", joinColumns = @JoinColumn(name = "order_id"))
+    @MapKeyColumn(name = "product_id")
+    @Column(name = "quantity")
+    private Map<Long, Integer> orderItems;
 
     private BigDecimal totalPrice;
     private LocalDateTime orderDate;
@@ -28,81 +32,81 @@ public class Order {
     private String orderStatus;
 
     public Order() {
-    }
+      }
 
-    public Order(Long id, User user, Set<OrderProduct> orderProducts, BigDecimal totalPrice, LocalDateTime orderDate, String shippingAddress, String paymentMethod, String orderStatus) {
-        this.id = id;
-        this.user = user;
-        this.orderProducts = orderProducts;
-        this.totalPrice = totalPrice;
-        this.orderDate = orderDate;
-        this.shippingAddress = shippingAddress;
-        this.paymentMethod = paymentMethod;
-        this.orderStatus = orderStatus;
-    }
+  public Order(Long id, User user, Map<Long, Integer> orderItems, BigDecimal totalPrice, LocalDateTime orderDate, String shippingAddress, String paymentMethod, String orderStatus) {
+    this.id = id;
+    this.user = user;
+    this.orderItems = orderItems;
+    this.totalPrice = totalPrice;
+    this.orderDate = orderDate;
+    this.shippingAddress = shippingAddress;
+    this.paymentMethod = paymentMethod;
+    this.orderStatus = orderStatus;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public User getUser() {
-        return user;
-    }
+  public User getUser() {
+    return user;
+  }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+  public void setUser(User user) {
+    this.user = user;
+  }
 
-    public Set<OrderProduct> getOrderProducts() {
-        return orderProducts;
-    }
+  public Map<Long, Integer> getOrderItems() {
+    return orderItems;
+  }
 
-    public void setOrderProducts(Set<OrderProduct> orderProducts) {
-        this.orderProducts = orderProducts;
-    }
+  public void setOrderItems(Map<Long, Integer> orderItems) {
+    this.orderItems = orderItems;
+  }
 
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
-    }
+  public BigDecimal getTotalPrice() {
+    return totalPrice;
+  }
 
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
-    }
+  public void setTotalPrice(BigDecimal totalPrice) {
+    this.totalPrice = totalPrice;
+  }
 
-    public LocalDateTime getOrderDate() {
-        return orderDate;
-    }
+  public LocalDateTime getOrderDate() {
+    return orderDate;
+  }
 
-    public void setOrderDate(LocalDateTime orderDate) {
-        this.orderDate = orderDate;
-    }
+  public void setOrderDate(LocalDateTime orderDate) {
+    this.orderDate = orderDate;
+  }
 
-    public String getShippingAddress() {
-        return shippingAddress;
-    }
+  public String getShippingAddress() {
+    return shippingAddress;
+  }
 
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
+  public void setShippingAddress(String shippingAddress) {
+    this.shippingAddress = shippingAddress;
+  }
 
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
+  public String getPaymentMethod() {
+    return paymentMethod;
+  }
 
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
+  public void setPaymentMethod(String paymentMethod) {
+    this.paymentMethod = paymentMethod;
+  }
 
-    public String getOrderStatus() {
-        return orderStatus;
-    }
+  public String getOrderStatus() {
+    return orderStatus;
+  }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
-    }
+  public void setOrderStatus(String orderStatus) {
+    this.orderStatus = orderStatus;
+  }
 }
 

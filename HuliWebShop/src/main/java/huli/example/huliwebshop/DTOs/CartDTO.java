@@ -1,16 +1,22 @@
 package huli.example.huliwebshop.DTOs;
 
-import java.util.Set;
-
 public class CartDTO {
-  private Set<Long> productIds;
+  private Long productId;
+  private int quantity; // Add a quantity field
 
-  public Set<Long> getProductIds() {
-    return productIds;
+  public Long getProductId() {
+    return productId;
   }
 
-  public void setProductIds(Set<Long> productIds) {
-    this.productIds = productIds;
+  public void setProductId(Long productId) {
+    this.productId = productId;
+  }
+
+  public int getQuantity() {
+    return quantity; // Getter for quantity
+  }
+
+  public void setQuantity(int quantity) {
+    this.quantity = quantity; // Setter for quantity
   }
 }
-

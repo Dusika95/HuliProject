@@ -1,67 +1,200 @@
 package huli.example.huliwebshop.services;
 
 import huli.example.huliwebshop.DTOs.OrderDTO;
+import huli.example.huliwebshop.DTOs.OrderItemDTO;
+import huli.example.huliwebshop.DTOs.UserDTO;
+import huli.example.huliwebshop.models.Cart;
 import huli.example.huliwebshop.models.Order;
-import huli.example.huliwebshop.models.OrderProduct;
 import huli.example.huliwebshop.models.Product;
 import huli.example.huliwebshop.models.User;
+import huli.example.huliwebshop.repository.ICartRepository;
 import huli.example.huliwebshop.repository.IOrderRepository;
 import huli.example.huliwebshop.repository.IProductRepository;
-import huli.example.huliwebshop.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Service
 public class OrderServiceImpl implements OrderService {
+    private final IOrderRepository orderRepository;
+    private final ICartRepository cartRepository;
+    private final IProductRepository productRepository;
 
     @Autowired
-    private IUserRepository iUserRepository;
-
-    @Autowired
-    private IProductRepository iProductRepository;
-
-    @Autowired
-    private IOrderRepository iOrderRepository;
+    public OrderServiceImpl(IOrderRepository orderRepository, ICartRepository cartRepository, IProductRepository productRepository) {
+        this.orderRepository = orderRepository;
+        this.cartRepository = cartRepository;
+        this.productRepository = productRepository;
+    }
 
     @Override
-    public Long createOrder(OrderDTO orderDTO) {
-        User user = iUserRepository.findById(orderDTO.getUserId()).orElse(null);
-        if (user == null) {
-            throw new IllegalArgumentException("User not found with ID: " + orderDTO.getUserId());
+    @Transactional
+    public ResponseEntity<String> placeOrder(Long userId, String paymentMethod) {
+
+        Cart cart = cartRepository.findByUserId(userId);
+
+        if (cart == null) {
+            return ResponseEntity.badRequest().body("Cart does not exist for this user. Cannot place an order.");
         }
 
-        Set<OrderProduct> orderProducts = new HashSet<>();
-        BigDecimal totalPrice = BigDecimal.ZERO;
+        Map<Product, Integer> cartEntries = cart.getCartEntries();
 
-        for (Long productId : orderDTO.getProductIds()) {
-            Product product = iProductRepository.findById(productId).orElse(null);
-            if (product != null) {
-                OrderProduct orderProduct = new OrderProduct();
-                orderProduct.setProduct(product);
-                orderProduct.setQuantity(1);
-                orderProducts.add(orderProduct);
-
-                totalPrice = totalPrice.add(BigDecimal.valueOf(product.getPrice()));
-            }
+        if (cartEntries.isEmpty()) {
+            return ResponseEntity.badRequest().body("Cart is empty. Cannot place an order.");
         }
 
-        if (orderProducts.isEmpty()) {
-            throw new IllegalArgumentException("No valid products found in the order");
+        if (paymentMethod == null || paymentMethod.isEmpty()) {
+            return ResponseEntity.badRequest().body("Payment method is missing in the request body.");
+        }
+
+        if (!isValidPaymentMethod(paymentMethod)) {
+            return ResponseEntity.badRequest().body("Invalid payment method.");
         }
 
         Order order = new Order();
-        order.setUser(user);
-        order.setOrderProducts(orderProducts);
+        order.setUser(cart.getUser());
+        Map<Long, Integer> orderItems = new HashMap<>();
+        BigDecimal totalPrice = BigDecimal.ZERO;
+
+        for (Map.Entry<Product, Integer> entry : cartEntries.entrySet()) {
+            Product product = entry.getKey();
+            int quantity = entry.getValue();
+
+            orderItems.put(product.getId(), quantity);
+
+            double productPrice = product.getPrice();
+            double totalProductPrice = productPrice * quantity;
+
+            totalPrice = totalPrice.add(BigDecimal.valueOf(totalProductPrice));
+        }
+
+        order.setPaymentMethod(paymentMethod);
+
+        User user = cart.getUser();
+        String address = user.getAddress();
+        String zipCode = user.getZipCode();
+        String city = user.getCity();
+
+        order.setOrderItems(orderItems);
         order.setTotalPrice(totalPrice);
-        order.setShippingAddress(orderDTO.getShippingAddress());
-        order.setPaymentMethod(orderDTO.getPaymentMethod());
+        order.setOrderDate(LocalDateTime.now());
+        order.setOrderStatus("Placed");
+        order.setShippingAddress(address);
+        orderRepository.save(order);
 
-        Order savedOrder = iOrderRepository.save(order);
+        cartEntries.clear();
+        cartRepository.save(cart);
 
-        return savedOrder.getId();
+        UserDTO userDTO = new UserDTO(user.getName(), user.getEmail(), address, zipCode, city);
+
+        List<OrderItemDTO> orderItemDTOs = new ArrayList<>();
+        for (Map.Entry<Long, Integer> entry : orderItems.entrySet()) {
+            Product product = productRepository.findById(entry.getKey()).orElse(null);
+            if (product != null) {
+                double productPrice = product.getPrice();
+                int quantity = entry.getValue();
+                double totalProductPrice = productPrice * quantity;
+
+                OrderItemDTO orderItemDTO = new OrderItemDTO(product.getId(), product.getName(), quantity, totalProductPrice);
+                orderItemDTOs.add(orderItemDTO);
+            }
+        }
+
+        OrderDTO orderDTO = new OrderDTO(order.getId(), userDTO, address, paymentMethod, totalPrice, "Placed", order.getOrderDate(), orderItemDTOs);
+
+        return ResponseEntity.ok("Order is created with order id " + order.getId());
     }
+
+    @Override
+    public boolean isValidPaymentMethod(String paymentMethod) {
+        List<String> validPaymentMethods = List.of("credit_card", "paypal", "cod", "bank_transfer");
+        return validPaymentMethods.contains(paymentMethod);
+    }
+
+    @Override
+    @Transactional
+    public ResponseEntity<String> updateOrderStatus(Long orderId, String newStatus) {
+        Order order = orderRepository.findById(orderId).orElse(null);
+
+        if (order == null) {
+            return ResponseEntity.badRequest().body("Order not found.");
+        }
+
+
+        Map<String, Set<String>> validStatusTransitions = new HashMap<>();
+        validStatusTransitions.put("Placed", new HashSet<>(Arrays.asList("Processing", "Cancelled")));
+        validStatusTransitions.put("Processing", new HashSet<>(Arrays.asList("Shipped", "Cancelled")));
+        validStatusTransitions.put("Shipped", new HashSet<>(Arrays.asList("Delivered")));
+        validStatusTransitions.put("Delivered", new HashSet<>(Arrays.asList("Completed", "Returned")));
+        validStatusTransitions.put("On Hold", new HashSet<>(Arrays.asList("Cancelled", "Processing")));
+        validStatusTransitions.put("Pending Payment", new HashSet<>(Arrays.asList("Completed", "Cancelled")));
+        validStatusTransitions.put("Cancelled", new HashSet<>());
+        validStatusTransitions.put("Refunded", new HashSet<>());
+        validStatusTransitions.put("Returned", new HashSet<>(Arrays.asList("Processing", "Cancelled")));
+        validStatusTransitions.put("Completed", new HashSet<>());
+
+        if (!validStatusTransitions.containsKey(order.getOrderStatus())) {
+            return ResponseEntity.badRequest().body("Invalid current status.");
+        }
+
+        if (!validStatusTransitions.get(order.getOrderStatus()).contains(newStatus)) {
+            return ResponseEntity.badRequest().body("Invalid status transition.");
+        }
+
+        order.setOrderStatus(newStatus);
+        orderRepository.save(order);
+
+        return ResponseEntity.ok("Order status updated to " + newStatus);
+    }
+
+    @Override
+    public List<OrderDTO> getUserOrders(Long userId) {
+        List<Order> userOrders = orderRepository.findByUserId(userId);
+        List<OrderDTO> orderDTOs = new ArrayList<>();
+
+        for (Order order : userOrders) {
+            User user = order.getUser();
+            UserDTO userDTO = new UserDTO(user.getName(), user.getEmail(), order.getShippingAddress(), user.getZipCode(), user.getCity());
+            List<OrderItemDTO> orderItemDTOs = new ArrayList<>();
+
+            for (Map.Entry<Long, Integer> entry : order.getOrderItems().entrySet()) {
+                Product product = productRepository.findById(entry.getKey()).orElse(null);
+                if (product != null) {
+                    double productPrice = product.getPrice();
+                    int quantity = entry.getValue();
+                    double totalProductPrice = productPrice * quantity;
+
+                    OrderItemDTO orderItemDTO = new OrderItemDTO(product.getId(), product.getName(), quantity, totalProductPrice);
+                    orderItemDTOs.add(orderItemDTO);
+                }
+            }
+
+            OrderDTO orderDTO = new OrderDTO(
+                    order.getId(),
+                    userDTO,
+                    order.getShippingAddress(),
+                    order.getPaymentMethod(),
+                    order.getTotalPrice(),
+                    order.getOrderStatus(),
+                    order.getOrderDate(),
+                    orderItemDTOs
+            );
+
+            orderDTOs.add(orderDTO);
+        }
+
+        return orderDTOs;
+    }
+
+
 }
+
+
+
+
+
