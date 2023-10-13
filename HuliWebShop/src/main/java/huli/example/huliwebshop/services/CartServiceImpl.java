@@ -41,6 +41,8 @@ public class CartServiceImpl implements CartService {
     if (!userOptional.isPresent()) {
       return ResponseEntity.badRequest().body("User not found with ID: " + userId);
     }
+
+
     User user = userOptional.get();
 
     Cart cart = user.getCart();
@@ -52,6 +54,9 @@ public class CartServiceImpl implements CartService {
     Map<Product, Integer> cartEntries = cart.getCartEntries();
 
     Long productId = cartDTO.getProductId();
+    if (productId == null) {
+      return ResponseEntity.badRequest().body("Invalid request. 'productId' must be provided.");
+    }
     Optional<Product> productOptional = productRepository.findById(productId);
 
     if (productOptional.isPresent()) {
@@ -165,6 +170,10 @@ public class CartServiceImpl implements CartService {
       return ResponseEntity.badRequest().body("Cart not found for the user with ID: " + userId);
     }
 
+    if (cartItemUpdateDTO.getProductId() == null || cartItemUpdateDTO.getQuantity() == null) {
+      return ResponseEntity.badRequest().body("Both 'productId' and 'quantity' must be provided in the request.");
+    }
+
     Map<Product, Integer> cartEntries = cart.getCartEntries();
     Long productId = cartItemUpdateDTO.getProductId();
     int newQuantity = cartItemUpdateDTO.getQuantity();
@@ -174,32 +183,43 @@ public class CartServiceImpl implements CartService {
       Product product = productOptional.get();
       int currentCartItemQuantity = cartEntries.getOrDefault(product, 0);
 
-      if (newQuantity == 0) {
+      if (currentCartItemQuantity < 1) {
+        return ResponseEntity.badRequest().body("There isn't any of that item in the cart. You can only update the quantity of an item if there's already at least 1 in the cart.");
+      }
+
+      if (newQuantity < 0) {
+        return ResponseEntity.badRequest().body("Quantity cannot be negative.");
+      } else if (newQuantity == 0) {
         int originalQuantity = product.getQuantity();
         int newProductQuantity = originalQuantity + currentCartItemQuantity;
         product.setQuantity(newProductQuantity);
 
         cartEntries.remove(product);
+
+        return ResponseEntity.ok("Item removed from the cart.");
       } else {
         int availableQuantity = product.getQuantity();
         int globalLimit = 5;
         int maxQuantity = Math.min(globalLimit, availableQuantity + currentCartItemQuantity);
 
-        if (newQuantity >= 0 && newQuantity <= maxQuantity) {
+        if (newQuantity <= maxQuantity) {
           int quantityDifference = newQuantity - currentCartItemQuantity;
           int newProductQuantity = availableQuantity - quantityDifference;
+
           if (newProductQuantity < 0) {
             return ResponseEntity.badRequest().body("Product quantity cannot go below 0.");
           }
+
           product.setQuantity(newProductQuantity);
 
           cartEntries.put(product, newQuantity);
         } else {
           return ResponseEntity.badRequest().body("Requested quantity exceeds the limit or available quantity for product with ID: " + productId);
         }
+
+        cartRepository.save(cart);
+        return ResponseEntity.ok("Cart item quantity updated successfully.");
       }
-      cartRepository.save(cart);
-      return ResponseEntity.ok("Cart item quantity updated successfully.");
     } else {
       return ResponseEntity.badRequest().body("Product not found with ID: " + productId);
     }
