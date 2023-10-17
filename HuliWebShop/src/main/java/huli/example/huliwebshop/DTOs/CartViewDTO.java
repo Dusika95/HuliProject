@@ -7,6 +7,7 @@ public class CartViewDTO {
   private Long id;
   private Map<String, CartItem> cartEntries = new HashMap<>();
   private double totalCartPrice;
+  private String errorMessage;
 
   public CartViewDTO() {
   }
@@ -39,6 +40,14 @@ public class CartViewDTO {
 
   public void setTotalCartPrice(double totalCartPrice) {
     this.totalCartPrice = totalCartPrice;
+  }
+
+  public String getErrorMessage() {
+    return errorMessage;
+  }
+
+  public void setErrorMessage(String errorMessage) {
+    this.errorMessage = errorMessage;
   }
 
   public static class CartItem {

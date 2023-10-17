@@ -5,10 +5,11 @@ import huli.example.huliwebshop.DTOs.CartItemUpdateDTO;
 import huli.example.huliwebshop.DTOs.CartViewDTO;
 import org.springframework.http.ResponseEntity;
 
-public interface CartService {
-  ResponseEntity<String> addToCart(Long userId, CartDTO cartDTO);
-  CartViewDTO viewCart(Long userId);
-  void clearCart(Long userId);
-  ResponseEntity<String> updateCartItemQuantity(Long userId, CartItemUpdateDTO cartItemUpdateDTO);
+import java.security.Principal;
 
+public interface CartService {
+  ResponseEntity<String> addToCart(CartDTO cartDTO, Principal principal);
+  ResponseEntity<CartViewDTO> viewCart(Principal principal);
+  ResponseEntity<String> clearCart(Principal principal);
+  ResponseEntity<String> updateCartItemQuantity(CartItemUpdateDTO cartItemUpdateDTO, Principal principal);
 }

@@ -8,6 +8,19 @@
       </database-info>
     </database-infos>
   </component>
+  <component name="JpaLiquibaseChangesConfig">
+    <exclude-change idName="cart_entries" tagName="createTable" />
+    <exclude-change idName="order_items" tagName="createTable" />
+    <exclude-change idName="fk_cart_entries_on_cart" tagName="addForeignKeyConstraint" />
+    <exclude-change idName="fk_cart_entries_on_product" tagName="addForeignKeyConstraint" />
+    <exclude-change idName="fk_order_items_on_order" tagName="addForeignKeyConstraint" />
+    <exclude-change idName="FK_CART_PRODUCTS_ON_CART" tagName="dropForeignKeyConstraint" />
+    <exclude-change idName="FK_CART_PRODUCTS_ON_PRODUCT" tagName="dropForeignKeyConstraint" />
+    <exclude-change idName="FK_ORDER_PRODUCTS_ON_ORDER" tagName="dropForeignKeyConstraint" />
+    <exclude-change idName="FK_ORDER_PRODUCTS_ON_PRODUCT" tagName="dropForeignKeyConstraint" />
+    <exclude-change idName="cart_products" tagName="dropTable" />
+    <exclude-change idName="order_products" tagName="dropTable" />
+  </component>
   <component name="PersistenceUnitSettings">
     <persistence-units>
       <persistence-unit moduleName="HuliWebShop.main" name="Default">

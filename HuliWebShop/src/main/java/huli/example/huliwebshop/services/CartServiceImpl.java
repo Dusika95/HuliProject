@@ -11,12 +11,13 @@ import huli.example.huliwebshop.repository.IUserRepository;
 import huli.example.huliwebshop.repository.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.OptimisticLockException;
-import java.util.Map;
-import java.util.Optional;
+import java.security.Principal;
+import java.util.*;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -32,16 +33,18 @@ public class CartServiceImpl implements CartService {
     this.productRepository = productRepository;
   }
 
-  private static final int MAX_PRODUCT_QUANTITY = 5;
-
   @Override
   @Transactional
-  public ResponseEntity<String> addToCart(Long userId, CartDTO cartDTO) {
+  public ResponseEntity<String> addToCart(CartDTO cartDTO, Principal principal) {
+    String authenticatedUserEmail = principal.getName();
+
+    User authenticatedUser = userRepository.findByEmail(authenticatedUserEmail);
+    Long userId = authenticatedUser.getId();
+
     Optional<User> userOptional = userRepository.findById(userId);
     if (!userOptional.isPresent()) {
       return ResponseEntity.badRequest().body("User not found with ID: " + userId);
     }
-
 
     User user = userOptional.get();
 
@@ -49,6 +52,10 @@ public class CartServiceImpl implements CartService {
     if (cart == null) {
       cart = new Cart();
       cart.setUser(user);
+    }
+
+    if (!authenticatedUserEmail.equals(user.getEmail())) {
+      return ResponseEntity.badRequest().body("You can only add items to your own cart.");
     }
 
     Map<Product, Integer> cartEntries = cart.getCartEntries();
@@ -76,6 +83,8 @@ public class CartServiceImpl implements CartService {
         int quantity = cartEntries.getOrDefault(product, 0);
         cartEntries.put(product, quantity + 1);
 
+        cart.setLastModified(new Date());
+
         cartRepository.save(cart);
 
         return ResponseEntity.ok("Product added to the cart successfully.");
@@ -90,16 +99,37 @@ public class CartServiceImpl implements CartService {
 
   @Override
   @Transactional
-  public CartViewDTO viewCart(Long userId) {
-    Optional<User> userOptional = userRepository.findById(userId);
-    if (!userOptional.isPresent()) {
-      throw new RuntimeException("User not found with ID: " + userId);
+  public ResponseEntity<CartViewDTO> viewCart(Principal principal) {
+    String authenticatedUserEmail = principal.getName();
+
+    User authenticatedUser = userRepository.findByEmail(authenticatedUserEmail);
+
+    if (authenticatedUser == null) {
+      CartViewDTO errorCartView = new CartViewDTO();
+      errorCartView.setErrorMessage("User not found.");
+      return ResponseEntity.badRequest().body(errorCartView);
     }
+
+    Optional<User> userOptional = userRepository.findById(authenticatedUser.getId());
+    if (!userOptional.isPresent()) {
+      CartViewDTO errorCartView = new CartViewDTO();
+      errorCartView.setErrorMessage("User not found with ID: " + authenticatedUser.getId());
+      return ResponseEntity.badRequest().body(errorCartView);
+    }
+
     User user = userOptional.get();
+
+    if (!authenticatedUserEmail.equals(user.getEmail())) {
+      CartViewDTO errorCartView = new CartViewDTO();
+      errorCartView.setErrorMessage("You can only view your own cart.");
+      return ResponseEntity.badRequest().body(errorCartView);
+    }
 
     Cart cart = user.getCart();
     if (cart == null) {
-      throw new RuntimeException("Cart not found for the user with ID: " + userId);
+      CartViewDTO errorCartView = new CartViewDTO();
+      errorCartView.setErrorMessage("Cart not found for the user.");
+      return ResponseEntity.badRequest().body(errorCartView);
     }
 
     CartViewDTO cartViewDTO = new CartViewDTO();
@@ -123,21 +153,34 @@ public class CartServiceImpl implements CartService {
 
     cartViewDTO.setTotalCartPrice(totalCartPrice);
 
-    return cartViewDTO;
+    return ResponseEntity.ok(cartViewDTO);
   }
 
   @Override
   @Transactional
-  public void clearCart(Long userId) {
-    Optional<User> userOptional = userRepository.findById(userId);
-    if (!userOptional.isPresent()) {
-      throw new RuntimeException("User not found with ID: " + userId);
+  public ResponseEntity<String> clearCart(Principal principal) {
+    String authenticatedUserEmail = principal.getName();
+
+    User authenticatedUser = userRepository.findByEmail(authenticatedUserEmail);
+
+    if (authenticatedUser == null) {
+      return ResponseEntity.badRequest().body("User not found.");
     }
+
+    Optional<User> userOptional = userRepository.findById(authenticatedUser.getId());
+    if (!userOptional.isPresent()) {
+      return ResponseEntity.badRequest().body("User not found with ID: " + authenticatedUser.getId());
+    }
+
     User user = userOptional.get();
+
+    if (!authenticatedUserEmail.equals(user.getEmail())) {
+      return ResponseEntity.badRequest().body("You can only clear your own cart.");
+    }
 
     Cart cart = user.getCart();
     if (cart == null) {
-      throw new RuntimeException("Cart not found for the user with ID: " + userId);
+      return ResponseEntity.ok("Cart is already empty.");
     }
 
     Map<Product, Integer> cartEntries = cart.getCartEntries();
@@ -152,22 +195,40 @@ public class CartServiceImpl implements CartService {
 
     cartEntries.clear();
 
+    cart.setLastModified(new Date());
+
     productRepository.saveAll(cartEntries.keySet());
     cartRepository.save(cart);
+
+    return ResponseEntity.ok("Cart cleared successfully.");
   }
+
 
   @Override
   @Transactional
-  public ResponseEntity<String> updateCartItemQuantity(Long userId, CartItemUpdateDTO cartItemUpdateDTO) {
-    Optional<User> userOptional = userRepository.findById(userId);
-    if (!userOptional.isPresent()) {
-      return ResponseEntity.badRequest().body("User not found with ID: " + userId);
+  public ResponseEntity<String> updateCartItemQuantity(CartItemUpdateDTO cartItemUpdateDTO, Principal principal) {
+    String authenticatedUserEmail = principal.getName();
+
+    User authenticatedUser = userRepository.findByEmail(authenticatedUserEmail);
+
+    if (authenticatedUser == null) {
+      return ResponseEntity.badRequest().body("User not found.");
     }
+
+    Optional<User> userOptional = userRepository.findById(authenticatedUser.getId());
+    if (!userOptional.isPresent()) {
+      return ResponseEntity.badRequest().body("User not found with ID: " + authenticatedUser.getId());
+    }
+
     User user = userOptional.get();
 
     Cart cart = user.getCart();
     if (cart == null) {
-      return ResponseEntity.badRequest().body("Cart not found for the user with ID: " + userId);
+      return ResponseEntity.badRequest().body("Cart not found for the user.");
+    }
+
+    if (!authenticatedUserEmail.equals(user.getEmail())) {
+      return ResponseEntity.badRequest().body("You can only update items in your own cart.");
     }
 
     if (cartItemUpdateDTO.getProductId() == null || cartItemUpdateDTO.getQuantity() == null) {
@@ -196,6 +257,8 @@ public class CartServiceImpl implements CartService {
 
         cartEntries.remove(product);
 
+        cartRepository.save(cart);
+
         return ResponseEntity.ok("Item removed from the cart.");
       } else {
         int availableQuantity = product.getQuantity();
@@ -213,16 +276,46 @@ public class CartServiceImpl implements CartService {
           product.setQuantity(newProductQuantity);
 
           cartEntries.put(product, newQuantity);
+
+          cart.setLastModified(new Date());
+
+          cartRepository.save(cart);
+
+          return ResponseEntity.ok("Cart item quantity updated successfully.");
         } else {
           return ResponseEntity.badRequest().body("Requested quantity exceeds the limit or available quantity for product with ID: " + productId);
         }
-
-        cartRepository.save(cart);
-        return ResponseEntity.ok("Cart item quantity updated successfully.");
       }
     } else {
       return ResponseEntity.badRequest().body("Product not found with ID: " + productId);
     }
+  }
+
+  @Scheduled(fixedRate = 1200000)
+  @Transactional
+  public void clearInactiveCarts() {
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(new Date());
+    cal.add(Calendar.MILLISECOND, -1200000);
+    Date thresholdDate = cal.getTime();
+
+    List<Cart> inactiveCarts = cartRepository.findInactiveCarts(thresholdDate);
+
+    for (Cart cart : inactiveCarts) {
+      Map<Product, Integer> cartEntries = cart.getCartEntries();
+
+      for (Map.Entry<Product, Integer> entry : cartEntries.entrySet()) {
+        Product product = entry.getKey();
+        int quantityInCart = entry.getValue();
+        int originalQuantity = product.getQuantity();
+        product.setQuantity(originalQuantity + quantityInCart);
+      }
+
+      cartEntries.clear();
+      cart.setLastModified(new Date());
+    }
+
+    cartRepository.saveAll(inactiveCarts);
   }
 }
 

@@ -34,6 +34,7 @@ public class SecurityConfig {
                 .permitAll() // permit all the requests from the matchers list (whitelist)
                 //.antMatchers("/admin/buildings/**").hasAuthority("admin")
                 .antMatchers("/api/users/admin/**").hasAuthority("admin")
+                .antMatchers(HttpMethod.PUT, "/orders/status/{orderId}").hasAuthority("admin")
                 .anyRequest() // any other request must be authenticated
                 .authenticated()
                 .and()

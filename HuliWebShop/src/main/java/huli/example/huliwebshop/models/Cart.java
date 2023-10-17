@@ -1,8 +1,10 @@
 package huli.example.huliwebshop.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +26,10 @@ public class Cart {
   @MapKeyJoinColumn(name = "product_id")
   @Column(name = "quantity")
   private Map<Product, Integer> cartEntries = new HashMap<>();
+
+  @UpdateTimestamp
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date lastModified;
 
   public Cart() {
   }
@@ -56,6 +62,14 @@ public class Cart {
 
   public void setCartEntries(Map<Product, Integer> cartEntries) {
     this.cartEntries = cartEntries;
+  }
+
+  public Date getLastModified() {
+    return lastModified;
+  }
+
+  public void setLastModified(Date lastModified) {
+    this.lastModified = lastModified;
   }
 }
 

@@ -10,12 +10,14 @@ import huli.example.huliwebshop.models.User;
 import huli.example.huliwebshop.repository.ICartRepository;
 import huli.example.huliwebshop.repository.IOrderRepository;
 import huli.example.huliwebshop.repository.IProductRepository;
+import huli.example.huliwebshop.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -24,19 +26,33 @@ public class OrderServiceImpl implements OrderService {
     private final IOrderRepository orderRepository;
     private final ICartRepository cartRepository;
     private final IProductRepository productRepository;
+    private final IUserRepository userRepository;
 
     @Autowired
-    public OrderServiceImpl(IOrderRepository orderRepository, ICartRepository cartRepository, IProductRepository productRepository) {
+    public OrderServiceImpl(IOrderRepository orderRepository, ICartRepository cartRepository, IProductRepository productRepository, IUserRepository userRepository) {
         this.orderRepository = orderRepository;
         this.cartRepository = cartRepository;
         this.productRepository = productRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
     @Transactional
-    public ResponseEntity<String> placeOrder(Long userId, String paymentMethod) {
+    public ResponseEntity<String> placeOrder(Principal principal, String paymentMethod) {
 
-        Cart cart = cartRepository.findByUserId(userId);
+        String authenticatedUserEmail = principal.getName();
+
+        User authenticatedUser = userRepository.findByEmail(authenticatedUserEmail);
+
+        if (authenticatedUser == null) {
+            return ResponseEntity.badRequest().body("User not found.");
+        }
+
+        if (!authenticatedUser.getEmail().equals(authenticatedUserEmail)) {
+            return ResponseEntity.badRequest().body("You can only place orders for your own account.");
+        }
+
+        Cart cart = cartRepository.findByUserId(authenticatedUser.getId());
 
         if (cart == null) {
             return ResponseEntity.badRequest().body("Cart does not exist for this user. Cannot place an order.");
@@ -153,44 +169,53 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderDTO> getUserOrders(Long userId) {
-        List<Order> userOrders = orderRepository.findByUserId(userId);
+    @Transactional
+    public List<OrderDTO> getUserOrders(Principal principal) {
+        String authenticatedUserEmail = principal.getName();
+
+        User authenticatedUser = userRepository.findByEmail(authenticatedUserEmail);
+        if (authenticatedUser == null) {
+            return Collections.emptyList();
+        }
+
+        List<Order> userOrders = orderRepository.findByUserId(authenticatedUser.getId());
         List<OrderDTO> orderDTOs = new ArrayList<>();
 
         for (Order order : userOrders) {
-            User user = order.getUser();
-            UserDTO userDTO = new UserDTO(user.getName(), user.getEmail(), order.getShippingAddress(), user.getZipCode(), user.getCity());
-            List<OrderItemDTO> orderItemDTOs = new ArrayList<>();
+            if (order.getUser().getEmail().equals(authenticatedUserEmail)) {
+                User user = order.getUser();
+                UserDTO userDTO = new UserDTO(user.getName(), user.getEmail(), order.getShippingAddress(), user.getZipCode(), user.getCity());
+                List<OrderItemDTO> orderItemDTOs = new ArrayList<>();
 
-            for (Map.Entry<Long, Integer> entry : order.getOrderItems().entrySet()) {
-                Product product = productRepository.findById(entry.getKey()).orElse(null);
-                if (product != null) {
-                    double productPrice = product.getPrice();
-                    int quantity = entry.getValue();
-                    double totalProductPrice = productPrice * quantity;
+                for (Map.Entry<Long, Integer> entry : order.getOrderItems().entrySet()) {
+                    Product product = productRepository.findById(entry.getKey()).orElse(null);
+                    if (product != null) {
+                        double productPrice = product.getPrice();
+                        int quantity = entry.getValue();
+                        double totalProductPrice = productPrice * quantity;
 
-                    OrderItemDTO orderItemDTO = new OrderItemDTO(product.getId(), product.getName(), quantity, totalProductPrice);
-                    orderItemDTOs.add(orderItemDTO);
+                        OrderItemDTO orderItemDTO = new OrderItemDTO(product.getId(), product.getName(), quantity, totalProductPrice);
+                        orderItemDTOs.add(orderItemDTO);
+                    }
                 }
+
+                OrderDTO orderDTO = new OrderDTO(
+                        order.getId(),
+                        userDTO,
+                        order.getShippingAddress(),
+                        order.getPaymentMethod(),
+                        order.getTotalPrice(),
+                        order.getOrderStatus(),
+                        order.getOrderDate(),
+                        orderItemDTOs
+                );
+
+                orderDTOs.add(orderDTO);
             }
-
-            OrderDTO orderDTO = new OrderDTO(
-                    order.getId(),
-                    userDTO,
-                    order.getShippingAddress(),
-                    order.getPaymentMethod(),
-                    order.getTotalPrice(),
-                    order.getOrderStatus(),
-                    order.getOrderDate(),
-                    orderItemDTOs
-            );
-
-            orderDTOs.add(orderDTO);
         }
 
         return orderDTOs;
     }
-
 
 }
 

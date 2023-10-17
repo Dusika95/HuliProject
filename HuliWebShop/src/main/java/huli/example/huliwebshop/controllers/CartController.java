@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/carts")
@@ -19,23 +21,23 @@ public class CartController {
     this.cartService = cartService;
   }
 
-  @PostMapping("/{userId}")
-  public ResponseEntity<String> addToCart(@PathVariable Long userId, @RequestBody CartDTO cartDTO) {
-    return cartService.addToCart(userId, cartDTO);
-  }
-  @DeleteMapping("/{userId}")
-  public void clearCart(@PathVariable Long userId) {
-    cartService.clearCart(userId);
+  @PostMapping
+  public ResponseEntity<String> addToCart(@RequestBody CartDTO cartDTO, Principal principal) {
+    return cartService.addToCart(cartDTO, principal);
   }
 
-  @GetMapping("/{userId}")
-  public CartViewDTO viewCart(@PathVariable Long userId) {
-    return cartService.viewCart(userId);
+  @DeleteMapping
+  public ResponseEntity<String> clearCart(Principal principal) {
+    return cartService.clearCart(principal);
   }
 
-  @PatchMapping("/{userId}")
-  public ResponseEntity<String> updateCartItemQuantity(@PathVariable Long userId, @RequestBody CartItemUpdateDTO cartItemUpdateDTO) {
-    return cartService.updateCartItemQuantity(userId, cartItemUpdateDTO);
+  @GetMapping
+  public ResponseEntity<CartViewDTO> viewCart(Principal principal) {
+    return cartService.viewCart(principal);
   }
 
+  @PatchMapping
+  public ResponseEntity<String> updateCartItemQuantity(@RequestBody CartItemUpdateDTO cartItemUpdateDTO, Principal principal) {
+    return cartService.updateCartItemQuantity(cartItemUpdateDTO, principal);
+  }
 }
