@@ -1,10 +1,12 @@
 package huli.example.huliwebshop.controllers;
 
-import huli.example.huliwebshop.DTOs.UserDTO;
 import huli.example.huliwebshop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -14,14 +16,21 @@ public class UserController {
   public UserController(UserService userService) {
     this.userService = userService;
   }
-
-  @PostMapping("/register")
-  public void registerUser(@RequestBody UserDTO userDTO) {
-    userService.registerUser(userDTO);
+  @GetMapping("/all")
+  public ResponseEntity getAllUsers() {
+    try {
+      return ResponseEntity.status(200).body(userService.getAllUser());
+    } catch (Exception e) {
+      return ResponseEntity.status(400).body(e.getMessage());
+    }
   }
 
-  @PostMapping("/login")
-  public void loginUser(@RequestBody UserDTO userDTO) {
-    userService.loginUser(userDTO);
+  @DeleteMapping("/{id}")
+  public ResponseEntity deleteUser(@PathVariable Long id) {
+    try {
+      return ResponseEntity.status(HttpStatus.OK).body(userService.deleteUserById(id));
+    } catch (Exception e) {
+      return ResponseEntity.status(400).body(e.getMessage());
+    }
   }
 }

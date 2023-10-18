@@ -15,36 +15,38 @@ public class Product {
     private String name;
     private String description;
     private String picture;
+    private int price;
+    private int quantity;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-
     @OneToMany(
-            mappedBy = "comment",
+            mappedBy = "product",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     private List<Comment> comments = new ArrayList<>();
     @OneToMany(
-            mappedBy = "rating",
+            mappedBy = "product",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     private List<Rating> ratings = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product")
-    private Set<CartProduct> cartProducts = new HashSet<>();
-
     public Product() {
 
     }
 
-    public Product(Long id, String name, String description, String picture, Category category) {
+    public Product(Long id, String name, String description, String picture, int price, int quantity, Category category, List<Comment> comments, List<Rating> ratings) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.picture = picture;
+        this.price = price;
+        this.quantity = quantity;
         this.category = category;
+        this.comments = comments;
+        this.ratings = ratings;
     }
 
     public Long getId() {
@@ -102,4 +104,21 @@ public class Product {
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
 }

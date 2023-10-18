@@ -1,0 +1,3 @@
+ALTER TABLE carts
+DROP
+COLUMN asdasd;
