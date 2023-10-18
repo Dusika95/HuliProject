@@ -91,6 +91,7 @@ public class ProductServiceImpl implements ProductService {
             throw new Exception("that id not found");
         } else {
             ProductGetByAloneDTO productGetByAloneDTO = new ProductGetByAloneDTO();
+            productGetByAloneDTO.setId(product.getId());
             productGetByAloneDTO.setName(product.getName());
             productGetByAloneDTO.setCategoryName(product.getCategory().getName());
             productGetByAloneDTO.setPicture(product.getPicture());

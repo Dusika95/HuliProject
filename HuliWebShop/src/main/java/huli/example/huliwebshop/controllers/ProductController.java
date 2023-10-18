@@ -2,9 +2,7 @@ package huli.example.huliwebshop.controllers;
 
 import huli.example.huliwebshop.DTOs.ProductCreateDTO;
 import huli.example.huliwebshop.DTOs.ProductUpdateDTO;
-import huli.example.huliwebshop.models.Product;
 import huli.example.huliwebshop.services.ProductService;
-import huli.example.huliwebshop.services.ProductServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

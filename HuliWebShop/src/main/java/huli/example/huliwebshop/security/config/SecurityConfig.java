@@ -30,9 +30,11 @@ public class SecurityConfig {
                 .csrf() // stands for "cross-site request forgery" - is a web security vulnerability that allows an attack that forces an end user to execute unwanted actions on a web application in which they are currently authenticated
                 .disable() // to simplify interactions between a client and the server
                 .authorizeHttpRequests()
-                .antMatchers(HttpMethod.GET, "/api/products/all-products") // Allow unauthenticated access to /all-products via HTTP GET
+                .antMatchers(HttpMethod.GET, "/api/products/*") // Allow unauthenticated access to /all-products via HTTP GET
                 .permitAll()
                 .antMatchers(HttpMethod.GET, "/api/categories/all-categories") // Allow unauthenticated access to /all-products via HTTP GET
+                .permitAll()
+                .antMatchers(HttpMethod.GET, "/api/products/*/*") // Allow unauthenticated access to /all-products via HTTP GET
                 .permitAll()
                 .antMatchers(HttpMethod.POST,"/api/**") // here we can pass a list of strings - this will represent our application's patterns
                 .permitAll() // permit all the requests from the matchers list (whitelist)
