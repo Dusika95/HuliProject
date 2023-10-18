@@ -1,65 +1,108 @@
 package huli.example.huliwebshop.DTOs;
 
 import java.math.BigDecimal;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.List;
 
 public class OrderDTO {
-    private Long userId;
-    private Set<Long> productIds;
-    private BigDecimal totalPrice;
-    private String shippingAddress;
-    private String paymentMethod;
+  private Long orderId;
+  private UserDTO userDTO;
+  private String shippingAddress;
+  private String paymentMethod;
+  private BigDecimal totalPrice;
+  private String orderStatus;
+  private LocalDateTime orderDate;
+  private List<OrderItemDTO> orderItems;
 
+  public OrderDTO() {
+  }
 
-    public OrderDTO() {
-    }
+  public OrderDTO(
+          Long orderId,
+          UserDTO userDTO,
+          String shippingAddress,
+          String paymentMethod,
+          BigDecimal totalPrice,
+          String orderStatus,
+          LocalDateTime orderDate,
+          List<OrderItemDTO> orderItems
+  ) {
+    this.orderId = orderId;
+    this.userDTO = userDTO;
+    this.shippingAddress = shippingAddress;
+    this.paymentMethod = paymentMethod;
+    this.totalPrice = totalPrice;
+    this.orderStatus = orderStatus;
+    this.orderDate = orderDate;
+    this.orderItems = orderItems;
+  }
 
-    public OrderDTO(Long userId, Set<Long> productIds, BigDecimal totalPrice, String shippingAddress, String paymentMethod) {
-        this.userId = userId;
-        this.productIds = productIds;
-        this.totalPrice = totalPrice;
-        this.shippingAddress = shippingAddress;
-        this.paymentMethod = paymentMethod;
-    }
+  public Long getOrderId() {
+    return orderId;
+  }
 
-    public Long getUserId() {
-        return userId;
-    }
+  public void setOrderId(Long orderId) {
+    this.orderId = orderId;
+  }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+  public UserDTO getUserDTO() {
+    return userDTO;
+  }
 
-    public Set<Long> getProductIds() {
-        return productIds;
-    }
+  public void setUserDTO(UserDTO userDTO) {
+    this.userDTO = userDTO;
+  }
 
-    public void setProductIds(Set<Long> productIds) {
-        this.productIds = productIds;
-    }
+  public String getShippingAddress() {
+    return shippingAddress;
+  }
 
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
-    }
+  public void setShippingAddress(String shippingAddress) {
+    this.shippingAddress = shippingAddress;
+  }
 
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
-    }
+  public String getPaymentMethod() {
+    return paymentMethod;
+  }
 
-    public String getShippingAddress() {
-        return shippingAddress;
-    }
+  public void setPaymentMethod(String paymentMethod) {
+    this.paymentMethod = paymentMethod;
+  }
 
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
+  public BigDecimal getTotalPrice() {
+    return totalPrice;
+  }
 
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
+  public void setTotalPrice(BigDecimal totalPrice) {
+    this.totalPrice = totalPrice;
+  }
 
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
+  public String getOrderStatus() {
+    return orderStatus;
+  }
+
+  public void setOrderStatus(String orderStatus) {
+    this.orderStatus = orderStatus;
+  }
+
+  public LocalDateTime getOrderDate() {
+    return orderDate;
+  }
+
+  public void setOrderDate(LocalDateTime orderDate) {
+    this.orderDate = orderDate;
+  }
+
+  public List<OrderItemDTO> getOrderItems() {
+    return orderItems;
+  }
+
+  public void setOrderItems(List<OrderItemDTO> orderItems) {
+    this.orderItems = orderItems;
+  }
 }
+
+
+
+
 

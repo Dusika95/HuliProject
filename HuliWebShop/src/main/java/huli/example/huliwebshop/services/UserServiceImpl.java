@@ -41,7 +41,8 @@ public class UserServiceImpl implements UserService {
                 throw new RuntimeException("A user with this email already exists.");
             }
             String role="";
-            if (userRegisterDTO.getEmail().equals("admin@example.com")) {
+            String email = userRegisterDTO.getEmail();
+            if (email.equals("admin@example.com")) {
                 role="admin";
             } else {
                 role="customer";
@@ -91,7 +92,7 @@ public class UserServiceImpl implements UserService {
             throw new Exception("this id not exist");
         } else {
             if (iUserRepository.findById(id).get().getRole().equals("admin")) {
-                throw new IllegalArgumentException("admin cant be delete");
+                throw new IllegalArgumentException("admin cannot be deleted");
             } else {
                 iUserRepository.deleteById(id);
                 return user.get();

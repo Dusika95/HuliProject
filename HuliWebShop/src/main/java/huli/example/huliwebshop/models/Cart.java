@@ -1,8 +1,13 @@
 package huli.example.huliwebshop.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Entity
 @Table(name = "carts")
@@ -13,18 +18,26 @@ public class Cart {
 
   @OneToOne
   @JoinColumn(name = "user_id")
+  @JsonIgnore
   private User user;
 
- @OneToMany(mappedBy = "cart")
-  private Set<CartProduct> cartProducts = new HashSet<>();
+  @ElementCollection
+  @CollectionTable(name = "cart_entries", joinColumns = @JoinColumn(name = "cart_id"))
+  @MapKeyJoinColumn(name = "product_id")
+  @Column(name = "quantity")
+  private Map<Product, Integer> cartEntries = new HashMap<>();
+
+  @UpdateTimestamp
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date lastModified;
 
   public Cart() {
   }
 
-  public Cart(Long id, User user, Set<CartProduct> cartProducts) {
+  public Cart(Long id, User user, Map<Product, Integer> cartEntries) {
     this.id = id;
     this.user = user;
-    this.cartProducts = cartProducts;
+    this.cartEntries = cartEntries;
   }
 
   public Long getId() {
@@ -43,12 +56,20 @@ public class Cart {
     this.user = user;
   }
 
-  public Set<CartProduct> getCartProducts() {
-    return cartProducts;
+  public Map<Product, Integer> getCartEntries() {
+    return cartEntries;
   }
 
-  public void setCartProducts(Set<CartProduct> cartProducts) {
-    this.cartProducts = cartProducts;
+  public void setCartEntries(Map<Product, Integer> cartEntries) {
+    this.cartEntries = cartEntries;
+  }
+
+  public Date getLastModified() {
+    return lastModified;
+  }
+
+  public void setLastModified(Date lastModified) {
+    this.lastModified = lastModified;
   }
 }
 

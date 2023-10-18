@@ -19,7 +19,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @PostMapping("/admin/create")
+    @PostMapping
     public ResponseEntity createCategory(@RequestBody Category category) {
         try {
             Category createdCategory = categoryService.saveNewCategory(category);
@@ -33,7 +33,7 @@ public class CategoryController {
         }
     }
 
-    @DeleteMapping("/admin/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteCategory(@PathVariable Long id) {
         try {
             categoryService.deleteCategoryById(id);
@@ -47,7 +47,7 @@ public class CategoryController {
         }
     }
 
-    @GetMapping("/all-categories")
+    @GetMapping
     public ResponseEntity getAllCategory() {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(categoryService.allCategories());
