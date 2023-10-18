@@ -3,6 +3,7 @@ package huli.example.huliwebshop.DTOs;
 import java.util.List;
 
 public class ProductGetByAloneDTO {
+    private Long id;
     private String name;
     private String description;
     private String picture;
@@ -15,7 +16,8 @@ public class ProductGetByAloneDTO {
 
     }
 
-    public ProductGetByAloneDTO(String name, String description, String picture, String categoryName, List<CommentsWithCreatorsDTO> comment, double star, int price, int quantity) {
+    public ProductGetByAloneDTO(Long id, String name, String description, String picture, String categoryName, List<CommentsWithCreatorsDTO> comment, double star, int price, int quantity) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.picture = picture;
@@ -88,5 +90,13 @@ public class ProductGetByAloneDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

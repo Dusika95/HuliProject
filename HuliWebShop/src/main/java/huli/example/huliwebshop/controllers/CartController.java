@@ -40,4 +40,17 @@ public class CartController {
   public ResponseEntity<String> updateCartItemQuantity(@RequestBody CartItemUpdateDTO cartItemUpdateDTO, Principal principal) {
     return cartService.updateCartItemQuantity(cartItemUpdateDTO, principal);
   }
+  /*@PutMapping("/{id")
+  public ResponseEntity editCart(@PathVariable Long id){
+
+  }*/
 }
+/*    @PutMapping("/{id}")
+    public ResponseEntity editProduct(@PathVariable Long id, @RequestBody ProductUpdateDTO productUpdateDTO){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(productService.editProductById(id,productUpdateDTO));
+        } catch (Exception e){
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
+
+    }*/
